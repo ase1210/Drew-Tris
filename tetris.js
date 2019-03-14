@@ -1,6 +1,11 @@
+import { drawSquare } from "./js/canvas-templates";
+
 document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById("canvas");
+
   const c = canvas.getContext("2d");
+
+  //SAMPLEPIECES
 
   // T Piece with Canvas
   c.fillStyle = "blue";
@@ -22,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
   c.fillRect(160, 90, 40, 40);
   c.fillRect(280, 90, 40, 40);
   // c.lineWidth = 2;
-  c.strokeStyle = "white";
+  c.strokeStyle = "black";
   c.strokeRect(200, 90, 40, 40);
   c.strokeRect(240, 90, 40, 40);
   c.strokeRect(160, 90, 40, 40);
