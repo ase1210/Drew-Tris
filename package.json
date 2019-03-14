@@ -4,7 +4,8 @@
   "description": "My-Tetris-Game",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --mode=development --watch"
+    "start": "webpack --mode=development --watch",
+    "build": "webpack -p"
   },
   "keywords": [],
   "author": "Drew-Engelstein",
