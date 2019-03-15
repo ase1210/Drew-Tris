@@ -1,4 +1,5 @@
 import { drawGrid } from "./js/View/canvas-templates";
+import Game from "./js/Game/game";
 
 let grid = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -26,21 +27,20 @@ let grid = [
 
 document.addEventListener("DOMContentLoaded", () => {
   // const canvas = document.getElementById("canvas");
-
   // const c = canvas.getContext("2d");
   // window.drawGrid = drawGrid;
   // window.grid = grid;
+  // function animate() {
+  //   console.log("animate");
+  //   let last = grid.pop();
+  //   grid.unshift(last);
+  //   // grid[19][9] = "#FFF19C";
+  //   drawGrid(grid);
+  // }
+  const game = new Game([1, 2, 3, 4, 5, 6, 7], grid);
+  window.game = game;
 
-  function animate() {
-    console.log("animate");
-    let last = grid.pop();
-    grid.unshift(last);
-    // grid[19][9] = "#FFF19C";
-    drawGrid(grid);
-  }
   // window.animate = animate;
-
-  drawGrid(grid);
-
-  setInterval(animate, 1000);
+  // drawGrid(grid);
+  // setInterval(animate, 1000);
 });
