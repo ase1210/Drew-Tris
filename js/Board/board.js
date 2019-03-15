@@ -22,19 +22,54 @@ class Board {
     });
   }
 
-  isValidMove(currPos, newPos) {}
+  isValidMove(currPos, newPos) {
+    for (let i = 0; i < newPos.length; i++) {
+      let row = newPos[i][0];
+      let col = newPos[i][1];
 
-  updateGrid(currPos, newPos) {}
+      if (col < 0) return false;
+      if (col > 9) return false;
+      if (row > 20) return false;
+      // debugger;
+      if (this.grid[row][col] && !this.includesTwople(currPos, [row, col]))
+        return false;
+    }
+
+    return true;
+  }
+
+  includesTwople(arr, twople) {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i][0] === twople[0] && arr[i][1] === twople[1]) return true;
+    }
+    return false;
+  }
+
+  updateGrid(currPos, newPos) {
+    for (let i = 0; i < currPos.length; i++) {
+      [
+        this.grid[currPos[i][0]][currPos[i][1]],
+        this.grid[newPos[i][0]][newPos[i][1]]
+      ] = [
+        this.grid[newPos[i][0]][newPos[i][1]],
+        this.grid[currPos[i][0]][currPos[i][1]]
+      ];
+    }
+  }
 
   moveLeft() {
     console.log("left");
-    let oldPos = this.currentPos;
-    let newPos = oldPos.map(block => {
+    let currPos = this.currentPos;
+    let newPos = currPos.map(block => {
       let newBlock = block.slice();
       newBlock[1] -= 1;
       return newBlock;
     });
-    console.log(oldPos, newPos);
+    console.log(currPos, newPos);
+    if (this.isValidMove(currPos, newPos)) {
+      this.updateGrid(currPos, newPos);
+      this.currentPos = newPos;
+    }
   }
 
   moveRight() {
