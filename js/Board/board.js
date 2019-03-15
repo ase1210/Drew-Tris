@@ -7,3 +7,5 @@ class Board {
       .map(r => new Array(this.width).fill(0));
   }
 }
+
+export default Board;
