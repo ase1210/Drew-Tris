@@ -22,8 +22,19 @@ class Board {
     });
   }
 
+  isValidMove(currPos, newPos) {}
+
+  updateGrid(currPos, newPos) {}
+
   moveLeft() {
     console.log("left");
+    let oldPos = this.currentPos;
+    let newPos = oldPos.map(block => {
+      let newBlock = block.slice();
+      newBlock[1] -= 1;
+      return newBlock;
+    });
+    console.log(oldPos, newPos);
   }
 
   moveRight() {
@@ -41,8 +52,6 @@ class Board {
   rotateCounterClockwise() {
     console.log("counter-clockwise");
   }
-
-  isValidMove(currPos, endPos) {}
 }
 
 export default Board;
