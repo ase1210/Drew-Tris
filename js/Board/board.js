@@ -102,7 +102,6 @@ class Board {
   }
 
   rotateClockwise() {
-    console.log("clockwise");
     let currPos = this.currentPos;
     let pieceState = (this.currentPosState + 1) % this.currentPiece.numStates;
     let rotationMap = this.currentPiece.rotationMap[pieceState];
@@ -116,12 +115,27 @@ class Board {
       this.updateGrid(currPos, newPos);
       this.currentPosState += 1;
     }
-
-    // if successful, add 1 to currPosState
   }
 
   rotateCounterClockwise() {
     console.log("counter-clockwise");
+    let currPos = this.currentPos;
+    let pieceState =
+      (this.currentPosState - 1 + this.currentPiece.numStates) %
+      this.currentPiece.numStates;
+    let rotationMap = this.currentPiece.rotationMap[pieceState];
+    let newPos = currPos.map((block, idx) => {
+      let newBlock = block.slice();
+      newBlock[0] += rotationMap[idx][0];
+      newBlock[1] += rotationMap[idx][1];
+      return newBlock;
+    });
+    if (this.isValidMove(currPos, newPos)) {
+      this.updateGrid(currPos, newPos);
+      this.currentPosState =
+        (this.currentPosState - 1 + this.currentPiece.numStates) %
+        this.currentPiece.numStates;
+    }
   }
 }
 
