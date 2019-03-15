@@ -13,15 +13,18 @@ class Board {
 
   setCurrentPiece(piece) {
     this.currentPiece = piece;
+    this.placeCurrentPiece();
   }
 
   placeCurrentPiece() {
+    let pos = [];
     this.currentPiece.orientations[0].forEach((block, idx) => {
       let row = 0 + block[0];
       let col = 5 + block[1];
       this.grid[row][col] = this.currentPiece.color;
-      this.currentPos.push([row, col]);
+      pos.push([row, col]);
     });
+    this.currentPos = pos;
   }
 
   isValidMove(currPos, newPos) {
@@ -32,7 +35,6 @@ class Board {
       if (col < 0) return false;
       if (col > 9) return false;
       if (row > 20) return false;
-      // debugger;
       if (this.grid[row][col] && !this.includesTwople(currPos, [row, col]))
         return false;
     }
