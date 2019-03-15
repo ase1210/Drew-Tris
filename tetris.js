@@ -20,7 +20,7 @@ let grid = [
   ["#A0E8B5", "#A0E8B5", 0, 0, 0, 0, 0, 0, 0, 0],
   ["#A0E8B5", 0, 0, 0, 0, 0, 0, 0, 0, 0],
   ["#A0E8B5", "#FFF19C", 0, 0, 0, 0, 0, 0, 0, 0],
-  ["#FFF19C", "#FFF19C", "#FFF19C", 0, 0, 0, "#F0B23C", "#AFC1B9", 0, 0]
+  ["#FFF19C", "#FFF19C", "#FFF19C", 0, 0, 0, "#14CFBD", "#D68E05", 0, 0]
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
