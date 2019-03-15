@@ -1,10 +1,34 @@
-import { drawSquare } from "./js/canvas-templates";
+import { drawGrid } from "./js/View/canvas-templates";
+
+let grid = [
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  ["blue", "blue", 0, 0, 0, 0, 0, 0, 0, 0],
+  ["blue", "blue", 0, 0, 0, 0, 0, 0, 0, 0],
+  ["green", "green", 0, 0, 0, 0, 0, 0, 0, 0],
+  ["green", 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  ["green", "red", 0, 0, 0, 0, 0, 0, 0, 0],
+  ["red", "red", "red", 0, 0, 0, 0, 0, 0, 0]
+];
 
 document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById("canvas");
 
   const c = canvas.getContext("2d");
 
+  drawGrid(grid);
   //SAMPLEPIECES
 
   // T Piece with Canvas
