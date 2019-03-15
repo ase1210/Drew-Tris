@@ -1,3 +1,5 @@
+import { drawGrid } from "../View/canvas-templates";
+
 class Board {
   constructor(height = 21, width = 10) {
     this.height = height;
@@ -54,15 +56,7 @@ class Board {
         this.grid[block[0]][block[1]] = 0;
       }
     });
-    // for (let i = 0; i < currPos.length; i++) {
-    // [
-    //   this.grid[currPos[i][0]][currPos[i][1]],
-    //   this.grid[newPos[i][0]][newPos[i][1]]
-    // ] = [
-    //   this.grid[newPos[i][0]][newPos[i][1]],
-    //   this.grid[currPos[i][0]][currPos[i][1]]
-    // ];
-    // }
+    drawGrid(this.grid);
   }
 
   moveLeft() {
@@ -92,7 +86,16 @@ class Board {
   }
 
   moveDown() {
-    console.log("down");
+    let currPos = this.currentPos;
+    let newPos = currPos.map(block => {
+      let newBlock = block.slice();
+      newBlock[0] += 1;
+      return newBlock;
+    });
+    if (this.isValidMove(currPos, newPos)) {
+      this.updateGrid(currPos, newPos);
+      this.currentPos = newPos;
+    } else return false;
   }
 
   rotateClockwise() {
