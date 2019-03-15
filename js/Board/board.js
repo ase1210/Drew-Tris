@@ -46,26 +46,32 @@ class Board {
   }
 
   updateGrid(currPos, newPos) {
-    for (let i = 0; i < currPos.length; i++) {
-      [
-        this.grid[currPos[i][0]][currPos[i][1]],
-        this.grid[newPos[i][0]][newPos[i][1]]
-      ] = [
-        this.grid[newPos[i][0]][newPos[i][1]],
-        this.grid[currPos[i][0]][currPos[i][1]]
-      ];
-    }
+    newPos.forEach(block => {
+      this.grid[block[0]][block[1]] = this.currentPiece.color;
+    });
+    currPos.forEach(block => {
+      if (!this.includesTwople(newPos, block)) {
+        this.grid[block[0]][block[1]] = 0;
+      }
+    });
+    // for (let i = 0; i < currPos.length; i++) {
+    // [
+    //   this.grid[currPos[i][0]][currPos[i][1]],
+    //   this.grid[newPos[i][0]][newPos[i][1]]
+    // ] = [
+    //   this.grid[newPos[i][0]][newPos[i][1]],
+    //   this.grid[currPos[i][0]][currPos[i][1]]
+    // ];
+    // }
   }
 
   moveLeft() {
-    console.log("left");
     let currPos = this.currentPos;
     let newPos = currPos.map(block => {
       let newBlock = block.slice();
       newBlock[1] -= 1;
       return newBlock;
     });
-    console.log(currPos, newPos);
     if (this.isValidMove(currPos, newPos)) {
       this.updateGrid(currPos, newPos);
       this.currentPos = newPos;
@@ -73,7 +79,16 @@ class Board {
   }
 
   moveRight() {
-    console.log("right");
+    let currPos = this.currentPos;
+    let newPos = currPos.map(block => {
+      let newBlock = block.slice();
+      newBlock[1] += 1;
+      return newBlock;
+    });
+    if (this.isValidMove(currPos, newPos)) {
+      this.updateGrid(currPos, newPos);
+      this.currentPos = newPos;
+    }
   }
 
   moveDown() {
