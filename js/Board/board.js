@@ -9,16 +9,18 @@ class Board {
       .map(r => new Array(this.width).fill(0));
     this.currentPiece = undefined;
     this.currentPos = [];
+    this.currentPosState = undefined;
   }
 
   setCurrentPiece(piece) {
     this.currentPiece = piece;
     this.placeCurrentPiece();
+    this.currentPosState = 0;
   }
 
   placeCurrentPiece() {
     let pos = [];
-    this.currentPiece.orientations[0].forEach((block, idx) => {
+    this.currentPiece.initialState.forEach((block, idx) => {
       let row = 0 + block[0];
       let col = 5 + block[1];
       this.grid[row][col] = this.currentPiece.color;
@@ -34,6 +36,7 @@ class Board {
 
       if (col < 0) return false;
       if (col > 9) return false;
+      if (row < 0) return false;
       if (row > 20) return false;
       if (this.grid[row][col] && !this.includesTwople(currPos, [row, col]))
         return false;
@@ -59,6 +62,7 @@ class Board {
       }
     });
     drawGrid(this.grid);
+    this.currentPos = newPos;
   }
 
   moveLeft() {
@@ -70,7 +74,6 @@ class Board {
     });
     if (this.isValidMove(currPos, newPos)) {
       this.updateGrid(currPos, newPos);
-      this.currentPos = newPos;
     }
   }
 
@@ -83,7 +86,6 @@ class Board {
     });
     if (this.isValidMove(currPos, newPos)) {
       this.updateGrid(currPos, newPos);
-      this.currentPos = newPos;
     }
   }
 
@@ -96,12 +98,26 @@ class Board {
     });
     if (this.isValidMove(currPos, newPos)) {
       this.updateGrid(currPos, newPos);
-      this.currentPos = newPos;
     } else return false;
   }
 
   rotateClockwise() {
     console.log("clockwise");
+    let currPos = this.currentPos;
+    let pieceState = (this.currentPosState + 1) % this.currentPiece.numStates;
+    let rotationMap = this.currentPiece.rotationMap[pieceState];
+    let newPos = currPos.map((block, idx) => {
+      let newBlock = block.slice();
+      newBlock[0] += rotationMap[idx][0];
+      newBlock[1] += rotationMap[idx][1];
+      return newBlock;
+    });
+    if (this.isValidMove(currPos, newPos)) {
+      this.updateGrid(currPos, newPos);
+      this.currentPosState += 1;
+    }
+
+    // if successful, add 1 to currPosState
   }
 
   rotateCounterClockwise() {
