@@ -1,46 +1,32 @@
-import { drawGrid } from "./js/View/canvas-templates";
 import Game from "./js/Game/game";
+import IPiece from "./js/Pieces/Classic/i-piece";
+import SPiece from "./js/Pieces/Classic/s-piece";
+import TPiece from "./js/Pieces/Classic/t-piece";
+import ZPiece from "./js/Pieces/Classic/z-piece";
+import OPiece from "./js/Pieces/Classic/o-piece";
+import JPiece from "./js/Pieces/Classic/j-piece";
+import LPiece from "./js/Pieces/Classic/l-piece";
 
-let grid = [
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, "#D6AFFF", "#D6AFFF", 0, 0, 0, 0, 0, 0],
-  [0, 0, "#D6AFFF", "#D6AFFF", 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, "#E8B8AB", 0, 0, 0, 0, 0, 0, 0],
-  ["#E8B8AB", "#E8B8AB", "#E8B8AB", 0, 0, 0, 0, 0, 0, 0],
-  ["#B9CBFF", "#B9CBFF", 0, 0, 0, 0, 0, 0, 0, 0],
-  ["#B9CBFF", "#B9CBFF", 0, 0, 0, 0, 0, 0, 0, 0],
-  ["#A0E8B5", "#A0E8B5", 0, 0, 0, 0, 0, 0, 0, 0],
-  ["#A0E8B5", 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  ["#A0E8B5", "#FFF19C", 0, 0, 0, 0, 0, 0, 0, 0],
-  ["#FFF19C", "#FFF19C", "#FFF19C", 0, 0, 0, "#14CFBD", "#D68E05", 0, 0]
+const colors = [
+  "#E8B8AB",
+  "#B9CBFF",
+  "#A0E8B5",
+  "#14CFBD",
+  "#D68E05",
+  "#FFF19C",
+  "#D6AFFF"
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
-  // const canvas = document.getElementById("canvas");
-  // const c = canvas.getContext("2d");
-  // window.drawGrid = drawGrid;
-  // window.grid = grid;
-  // function animate() {
-  //   console.log("animate");
-  //   let last = grid.pop();
-  //   grid.unshift(last);
-  //   // grid[19][9] = "#FFF19C";
-  //   drawGrid(grid);
-  // }
-  const game = new Game([1, 2, 3, 4, 5, 6, 7], grid);
+  // const board = new Board();
+  const pieces = [];
+  pieces.push(new LPiece("#E8B8AB"));
+  pieces.push(new OPiece("#B9CBFF"));
+  pieces.push(new JPiece("#A0E8B5"));
+  pieces.push(new SPiece("#14CFBD"));
+  pieces.push(new ZPiece("#D68E05"));
+  pieces.push(new IPiece("#FFF19C"));
+  pieces.push(new TPiece("#D6AFFF"));
+  const game = new Game(pieces);
   window.game = game;
-
-  // window.animate = animate;
-  // drawGrid(grid);
-  // setInterval(animate, 1000);
 });
