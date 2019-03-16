@@ -14,12 +14,11 @@ export default class Piece {
   }
 
   move(direction, currPos) {
-    const newPos = currPos.map(block => {
+    return currPos.map(block => {
       let newBlock = block.slice();
       const { idx, shift } = this.directionsMap(direction);
       newBlock[idx] += shift;
       return newBlock;
     });
-    return newPos;
   }
 }

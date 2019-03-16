@@ -65,40 +65,12 @@ class Board {
     this.currentPos = newPos;
   }
 
-  moveLeft() {
-    let currPos = this.currentPos;
-    let newPos = currPos.map(block => {
-      let newBlock = block.slice();
-      newBlock[1] -= 1;
-      return newBlock;
-    });
+  move(direction) {
+    const currPos = this.currentPos;
+    const newPos = this.currentPiece.move(direction, currPos);
     if (this.isValidMove(currPos, newPos)) {
       this.updateGrid(currPos, newPos);
-    }
-  }
-
-  moveRight() {
-    let currPos = this.currentPos;
-    let newPos = currPos.map(block => {
-      let newBlock = block.slice();
-      newBlock[1] += 1;
-      return newBlock;
-    });
-    if (this.isValidMove(currPos, newPos)) {
-      this.updateGrid(currPos, newPos);
-    }
-  }
-
-  moveDown() {
-    let currPos = this.currentPos;
-    let newPos = currPos.map(block => {
-      let newBlock = block.slice();
-      newBlock[0] += 1;
-      return newBlock;
-    });
-    if (this.isValidMove(currPos, newPos)) {
-      this.updateGrid(currPos, newPos);
-    } else return false;
+    } else if (direction === "down") return false;
   }
 
   rotateClockwise() {
@@ -113,21 +85,20 @@ class Board {
     });
     if (this.isValidMove(currPos, newPos)) {
       this.updateGrid(currPos, newPos);
-      this.currentPosState += 1;
+      this.currentPosState =
+        (this.currentPosState + 1) % this.currentPiece.numStates;
     }
   }
 
   rotateCounterClockwise() {
     console.log("counter-clockwise");
     let currPos = this.currentPos;
-    let pieceState =
-      (this.currentPosState - 1 + this.currentPiece.numStates) %
-      this.currentPiece.numStates;
+    let pieceState = this.currentPosState;
     let rotationMap = this.currentPiece.rotationMap[pieceState];
     let newPos = currPos.map((block, idx) => {
       let newBlock = block.slice();
-      newBlock[0] += rotationMap[idx][0];
-      newBlock[1] += rotationMap[idx][1];
+      newBlock[0] -= rotationMap[idx][0];
+      newBlock[1] -= rotationMap[idx][1];
       return newBlock;
     });
     if (this.isValidMove(currPos, newPos)) {
