@@ -78,7 +78,7 @@ class Board {
     const newPos = this.currentPiece.move(direction, currPos);
     if (this._isValidMove(currPos, newPos)) {
       this._updateGrid(currPos, newPos);
-    } else if (direction === "down") return false;
+    } else if (direction === "down") return true;
   }
 
   // rotate(direction) {

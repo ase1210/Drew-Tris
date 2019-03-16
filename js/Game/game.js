@@ -12,6 +12,11 @@ export default class Game {
 
     this.tick = this.tick.bind(this);
   }
+  nextPiece() {
+    this.board.setCurrentPiece(this.currentPiece);
+    this.currentPiece = this.pieceSequence.shift();
+    this.playRound();
+  }
 
   playRound() {
     if (this.gameOver()) {
@@ -22,12 +27,12 @@ export default class Game {
 
   tick() {
     console.log("tick-toc");
-    let last = this.board.pop();
-    this.board.unshift(last);
-    drawGrid(this.board);
-    this.score += 1;
     console.log(new Date());
-    this.playRound();
+    if (this.board.move("down")) {
+      this.nextPiece();
+    } else {
+      this.playRound();
+    }
   }
 
   gameOver() {
@@ -40,8 +45,8 @@ export default class Game {
     for (let i = 0; i < 4; i++) {
       bag = bag.concat(this.pieces);
     }
-    for (let i = bag.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
+    for (let i = bag.length - 1; i >= 0; i--) {
+      const j = Math.floor(Math.random() * i);
       [bag[i], bag[j]] = [bag[j], bag[i]];
     }
     return bag;
