@@ -33,7 +33,7 @@ class Board {
       if (
         this._isOnGrid(newBlock) &&
         this.grid[newBlock[0]][newBlock[1]] && // location on grid is occupied
-        !this._isBlockInPos(currPos, newBlock)
+        !this._includesBlock(currPos, newBlock)
       )
         return false;
     }
@@ -41,9 +41,9 @@ class Board {
     return true;
   }
 
-  _isOccupied(posArr, block) {}
+  // _isOccupied(posArr, block) {}
 
-  _isBlockInPos(posArr, block) {
+  _includesBlock(posArr, block) {
     for (let i = 0; i < posArr.length; i++) {
       if (posArr[i][0] === block[0] && posArr[i][1] === block[1]) return true;
     }
@@ -65,7 +65,7 @@ class Board {
       }
     });
     currPos.forEach(block => {
-      if (this._isOnGrid(block) && !this._isBlockInPos(newPos, block)) {
+      if (this._isOnGrid(block) && !this._includesBlock(newPos, block)) {
         this.grid[block[0]][block[1]] = 0;
       }
     });
@@ -80,6 +80,23 @@ class Board {
       this._updateGrid(currPos, newPos);
     } else if (direction === "down") return false;
   }
+
+  // rotate(direction) {
+  //   const currentPiece = this.currentPiece;
+  //   const currPos = this.currentPos;
+  //   let [currPosState, shift] = [this.currentPosState, -1];
+  //   //  = this.currentPosState;
+  //   if (direction === "clockwise") {
+  //     shift = 1;
+  //     currPosState += 1;
+  //   }
+  //   // let shift = direction === "clockwise" ? 1 : -1;
+  //   const newPos = currentPiece.rotate(currPos, currPosState, shift);
+  //   if (this._isValidMove(currPos, newPos)) {
+  //     this._updateGrid(currPos, newPos);
+  //     this.currentPosState = currPosState % this.currentPiece.numStates;
+  //   } else if (direction === "down") return false;
+  // }
 
   rotateClockwise() {
     let currPos = this.currentPos;
@@ -99,7 +116,6 @@ class Board {
   }
 
   rotateCounterClockwise() {
-    console.log("counter-clockwise");
     let currPos = this.currentPos;
     let pieceState = this.currentPosState;
     let rotationMap = this.currentPiece.rotationMap[pieceState];
