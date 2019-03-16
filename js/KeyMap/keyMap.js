@@ -9,7 +9,7 @@ export default class KeyMap {
       this.actions[e.code]();
     }
   }
-  removeEventListeners() {
+  removeEventListener() {
     document.removeEventListener("keydown", this.eventHandler);
   }
 }

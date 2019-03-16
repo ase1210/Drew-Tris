@@ -25,7 +25,6 @@ class Board {
 
       if (newBlock[1] < 0) return false;
       if (newBlock[1] > 9) return false;
-      // if (newBlock[0] < 0) return false;
       if (newBlock[0] > 20) return false;
 
       // REFACTOR THIS BELOW IF STATEMENT to use isOnGrid and isOccupied..maybe refactor above if statements as well?

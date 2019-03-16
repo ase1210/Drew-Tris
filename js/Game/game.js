@@ -8,22 +8,21 @@ export default class Game {
     this.score = 0;
     this.level = 1;
     this.bag = [];
-    this.freeze = false;
     this.timeOut = undefined;
-    this.fillAndShuffleBag();
+    this._fillAndShuffleBag();
     this.currentPiece = this.bag.shift();
     this.keyMap = undefined;
 
-    this.tick = this.tick.bind(this);
-    this.setKeyMap = this.setKeyMap.bind(this);
+    this._tick = this._tick.bind(this);
+    this._setKeyMap = this._setKeyMap.bind(this);
   }
 
   play() {
-    this.setKeyMap();
-    this.setNextPiece();
+    this._setKeyMap();
+    this._setNextPiece();
   }
 
-  setKeyMap() {
+  _setKeyMap() {
     this.keyMap = new KeyMap({
       KeyA: () => {
         console.log("rotate");
@@ -37,12 +36,12 @@ export default class Game {
     });
   }
 
-  setNextPiece() {
+  _setNextPiece() {
     this.board.setCurrentPiece(this.currentPiece);
     this.currentPiece = this.bag.shift();
-    this.tick();
+    this._tick();
     if (this.bag.length === 0) {
-      this.fillAndShuffleBag();
+      this._fillAndShuffleBag();
     }
   }
   clearRows() {
@@ -60,15 +59,15 @@ export default class Game {
       console.log("GameOver");
       return;
     } else {
-      this.setNextPiece();
+      this._setNextPiece();
     }
   }
 
-  tick() {
+  _tick() {
     if (this.board.move("down")) {
       this.freezePiece();
     } else {
-      this.timeOut = setTimeout(this.tick, 75 * (11 - this.level));
+      this.timeOut = setTimeout(this._tick, 75 * (11 - this.level));
     }
   }
 
@@ -80,7 +79,7 @@ export default class Game {
     return gameOver;
   }
 
-  fillAndShuffleBag() {
+  _fillAndShuffleBag() {
     let bag = [];
     for (let i = 0; i < 4; i++) {
       bag = bag.concat(this.pieces);
