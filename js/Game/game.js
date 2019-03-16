@@ -1,5 +1,5 @@
 import Board from "../Board/board";
-import { drawGrid } from "../View/canvas-templates";
+import KeyMap from "../KeyMap/keyMap";
 
 export default class Game {
   constructor(pieces, board = new Board()) {
@@ -7,37 +7,77 @@ export default class Game {
     this.pieces = pieces;
     this.score = 0;
     this.level = 1;
-    this.pieceSequence = this.fillAndShuffleBag();
-    this.currentPiece = this.pieceSequence.shift();
+    this.bag = [];
+    this.freeze = false;
+    this.timeOut = undefined;
+    this.fillAndShuffleBag();
+    this.currentPiece = this.bag.shift();
+    this.keyMap = undefined;
 
     this.tick = this.tick.bind(this);
-  }
-  nextPiece() {
-    this.board.setCurrentPiece(this.currentPiece);
-    this.currentPiece = this.pieceSequence.shift();
-    this.playRound();
+    this.setKeyMap = this.setKeyMap.bind(this);
   }
 
-  playRound() {
-    if (this.gameOver()) {
-      return;
+  play() {
+    this.setKeyMap();
+    this.setNextPiece();
+  }
+
+  setKeyMap() {
+    this.keyMap = new KeyMap({
+      KeyA: () => {
+        console.log("rotate");
+        this.board.rotateCounterClockwise();
+      },
+      KeyS: () => this.board.rotateClockwise(),
+      ArrowUp: () => this.board.rotateClockwise(),
+      ArrowDown: () => this.board.move("down"),
+      ArrowLeft: () => this.board.move("left"),
+      ArrowRight: () => this.board.move("right")
+    });
+  }
+
+  setNextPiece() {
+    this.board.setCurrentPiece(this.currentPiece);
+    this.currentPiece = this.bag.shift();
+    this.tick();
+    if (this.bag.length === 0) {
+      this.fillAndShuffleBag();
     }
-    setTimeout(this.tick, 1000 / this.level);
+  }
+  clearRows() {
+    console.log("CLEAR");
+  }
+  setScore() {
+    console.log("score");
+  }
+
+  freezePiece() {
+    clearTimeout(this.timeOut);
+    this.clearRows();
+    this.setScore();
+    if (this.gameOver()) {
+      console.log("GameOver");
+      return;
+    } else {
+      this.setNextPiece();
+    }
   }
 
   tick() {
-    console.log("tick-toc");
-    console.log(new Date());
     if (this.board.move("down")) {
-      this.nextPiece();
+      this.freezePiece();
     } else {
-      this.playRound();
+      this.timeOut = setTimeout(this.tick, 75 * (11 - this.level));
     }
   }
 
   gameOver() {
-    // return this.board[0].some(pos => pos);
-    return this.score > 10;
+    let gameOver = this.board.grid[0].some(pos => pos);
+    if (gameOver) {
+      this.keyMap.removeEventListener();
+    }
+    return gameOver;
   }
 
   fillAndShuffleBag() {
@@ -49,6 +89,6 @@ export default class Game {
       const j = Math.floor(Math.random() * i);
       [bag[i], bag[j]] = [bag[j], bag[i]];
     }
-    return bag;
+    this.bag = bag;
   }
 }
