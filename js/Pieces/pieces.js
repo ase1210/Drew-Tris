@@ -4,11 +4,12 @@ export default class Piece {
   }
 
   directionsMap(key) {
-    // k:v  === direction: [row/col index, shift]
+    // k:v  === direction: { row/col index, shift }
     const directions = {
       right: { idx: 1, shift: 1 },
       left: { idx: 1, shift: -1 },
-      down: { idx: 0, shift: 1 }
+      down: { idx: 0, shift: 1 },
+      startingPos: { idx: 1, shift: 5 }
     };
     return directions[key];
   }
