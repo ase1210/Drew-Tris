@@ -14,62 +14,70 @@ class Board {
 
   setCurrentPiece(piece) {
     this.currentPiece = piece;
-    this.placeCurrentPiece();
+    this.currentPos = piece.initialState;
     this.currentPosState = 0;
+    this.move("startingPos");
   }
 
-  placeCurrentPiece() {
-    let pos = [];
-    this.currentPiece.initialState.forEach((block, idx) => {
-      let row = 0 + block[0];
-      let col = 5 + block[1];
-      this.grid[row][col] = this.currentPiece.color;
-      pos.push([row, col]);
-    });
-    this.currentPos = pos;
-  }
-
-  isValidMove(currPos, newPos) {
+  _isValidMove(currPos, newPos) {
     for (let i = 0; i < newPos.length; i++) {
-      let row = newPos[i][0];
-      let col = newPos[i][1];
+      let newBlock = newPos[i];
 
-      if (col < 0) return false;
-      if (col > 9) return false;
-      if (row < 0) return false;
-      if (row > 20) return false;
-      if (this.grid[row][col] && !this.includesTwople(currPos, [row, col]))
+      if (newBlock[1] < 0) return false;
+      if (newBlock[1] > 9) return false;
+      // if (newBlock[0] < 0) return false;
+      if (newBlock[0] > 20) return false;
+
+      // REFACTOR THIS BELOW IF STATEMENT to use isOnGrid and isOccupied..maybe refactor above if statements as well?
+
+      if (
+        this._isOnGrid(newBlock) &&
+        this.grid[newBlock[0]][newBlock[1]] && // location on grid is occupied
+        !this._isBlockInPos(currPos, newBlock)
+      )
         return false;
     }
 
     return true;
   }
 
-  includesTwople(arr, twople) {
-    for (let i = 0; i < arr.length; i++) {
-      if (arr[i][0] === twople[0] && arr[i][1] === twople[1]) return true;
+  _isOccupied(posArr, block) {}
+
+  _isBlockInPos(posArr, block) {
+    for (let i = 0; i < posArr.length; i++) {
+      if (posArr[i][0] === block[0] && posArr[i][1] === block[1]) return true;
     }
     return false;
   }
 
-  updateGrid(currPos, newPos) {
+  _isOnGrid(block) {
+    return !!this.grid[block[0]];
+  }
+
+  _drawGrid() {
+    drawGrid(this.grid);
+  }
+
+  _updateGrid(currPos, newPos) {
     newPos.forEach(block => {
-      this.grid[block[0]][block[1]] = this.currentPiece.color;
+      if (this._isOnGrid(block)) {
+        this.grid[block[0]][block[1]] = this.currentPiece.color;
+      }
     });
     currPos.forEach(block => {
-      if (!this.includesTwople(newPos, block)) {
+      if (this._isOnGrid(block) && !this._isBlockInPos(newPos, block)) {
         this.grid[block[0]][block[1]] = 0;
       }
     });
-    drawGrid(this.grid);
+    this._drawGrid();
     this.currentPos = newPos;
   }
 
   move(direction) {
     const currPos = this.currentPos;
     const newPos = this.currentPiece.move(direction, currPos);
-    if (this.isValidMove(currPos, newPos)) {
-      this.updateGrid(currPos, newPos);
+    if (this._isValidMove(currPos, newPos)) {
+      this._updateGrid(currPos, newPos);
     } else if (direction === "down") return false;
   }
 
@@ -83,8 +91,8 @@ class Board {
       newBlock[1] += rotationMap[idx][1];
       return newBlock;
     });
-    if (this.isValidMove(currPos, newPos)) {
-      this.updateGrid(currPos, newPos);
+    if (this._isValidMove(currPos, newPos)) {
+      this._updateGrid(currPos, newPos);
       this.currentPosState =
         (this.currentPosState + 1) % this.currentPiece.numStates;
     }
@@ -101,8 +109,8 @@ class Board {
       newBlock[1] -= rotationMap[idx][1];
       return newBlock;
     });
-    if (this.isValidMove(currPos, newPos)) {
-      this.updateGrid(currPos, newPos);
+    if (this._isValidMove(currPos, newPos)) {
+      this._updateGrid(currPos, newPos);
       this.currentPosState =
         (this.currentPosState - 1 + this.currentPiece.numStates) %
         this.currentPiece.numStates;
