@@ -26,15 +26,20 @@ export default class Game {
   _setKeyMap() {
     this.keyMap = new KeyMap({
       KeyA: () => {
-        console.log("rotate");
         this.board.rotateCounterClockwise();
       },
       KeyS: () => this.board.rotateClockwise(),
       ArrowUp: () => this.board.rotateClockwise(),
-      ArrowDown: () => this.board.move("down"),
-      ArrowLeft: () => this.board.move("left"),
-      ArrowRight: () => this.board.move("right")
+      ArrowDown: () => this.move("down"),
+      ArrowLeft: () => this.move("left"),
+      ArrowRight: () => this.move("right")
     });
+  }
+
+  move(direction) {
+    if (this.board.move(direction) && direction === "down") {
+      this._freezePiece();
+    }
   }
 
   _setNextPiece() {
@@ -48,12 +53,10 @@ export default class Game {
   _clearRows() {
     let rowsCleared = this.board.clearRows();
     this.rowsCleared += rowsCleared;
-    console.log("CLEAR");
     return rowsCleared;
   }
   _setScore(clearedRows) {
     this.score += this.level * 25 * Math.pow(2, clearedRows);
-    console.log(this.score);
   }
 
   _updateLevel() {
@@ -79,7 +82,7 @@ export default class Game {
     if (this.board.move("down")) {
       this._freezePiece();
     } else {
-      this.timeOut = setTimeout(this._tick, 75 * (11 - this.level));
+      this.timeOut = setTimeout(this._tick, 10 * (11 - this.level));
     }
   }
 
