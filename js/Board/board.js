@@ -19,6 +19,28 @@ export default class Board {
     this.move("startingPos");
   }
 
+  move(direction) {
+    const currPos = this.currentPos;
+    const newPos = this.currentPiece.move(direction, currPos);
+    if (this._isValidMove(currPos, newPos)) {
+      this._updateGrid(currPos, newPos);
+    } else if (direction === "down") return true;
+  }
+
+  clearRows() {
+    let fullRows = [];
+    this.currentPos.forEach(block => {
+      if (
+        this._isOnGrid(block) &&
+        this.grid[block[0]].every(pos => pos) &&
+        !fullRows.includes(block[0])
+      ) {
+        fullRows.push(block[0]);
+      }
+    });
+    console.log(fullRows);
+  }
+
   _isValidMove(currPos, newPos) {
     for (let i = 0; i < newPos.length; i++) {
       let newBlock = newPos[i];
@@ -70,14 +92,6 @@ export default class Board {
     });
     this._drawGrid();
     this.currentPos = newPos;
-  }
-
-  move(direction) {
-    const currPos = this.currentPos;
-    const newPos = this.currentPiece.move(direction, currPos);
-    if (this._isValidMove(currPos, newPos)) {
-      this._updateGrid(currPos, newPos);
-    } else if (direction === "down") return true;
   }
 
   // rotate(direction) {
