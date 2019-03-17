@@ -37,7 +37,9 @@ export default class Game {
   }
 
   move(direction) {
-    this.board.move(direction);
+    if (this.board.move(direction)) {
+      this._freezePiece();
+    }
   }
 
   _setNextPiece() {
