@@ -1,6 +1,5 @@
 export const drawGrid = grid => {
-  let sq = 30;
-
+  const sq = 30;
   const canvas = document.getElementById("canvas");
   const c = canvas.getContext("2d");
 
@@ -13,5 +12,16 @@ export const drawGrid = grid => {
       c.strokeStyle = "rgba(255,255,255,0.2)";
       c.strokeRect(j * sq, (i - 1) * sq, sq, sq);
     }
+  }
+};
+
+export const clearRowAnimation = rowNums => {
+  const sq = 30;
+  const canvas = document.getElementById("canvas");
+  const c = canvas.getContext("2d");
+
+  for (let i = 0; i < rowNums.length; i++) {
+    c.fillStyle = "#ffffff";
+    c.fillRect(0, (rowNums[i] - 1) * sq, sq * 10, sq);
   }
 };
