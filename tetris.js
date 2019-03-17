@@ -19,6 +19,11 @@ const colors = [
 
 document.addEventListener("DOMContentLoaded", () => {
   // const board = new Board();
+  const canvas = document.getElementById("canvas");
+  const c = canvas.getContext("2d");
+  c.fillStyle = "blue";
+  c.fillRect(0, 0, 300, 600);
+
   const pieces = [];
   pieces.push(new LPiece("#E8B8AB"));
   pieces.push(new OPiece("#B9CBFF"));

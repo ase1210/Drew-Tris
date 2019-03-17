@@ -37,9 +37,7 @@ export default class Game {
   }
 
   move(direction) {
-    if (this.board.move(direction) && direction === "down") {
-      this._freezePiece();
-    }
+    this.board.move(direction);
   }
 
   _setNextPiece() {
@@ -82,7 +80,7 @@ export default class Game {
     if (this.board.move("down")) {
       this._freezePiece();
     } else {
-      this.timeOut = setTimeout(this._tick, 10 * (11 - this.level));
+      this.timeOut = setTimeout(this._tick, 75 * (11 - this.level));
     }
   }
 

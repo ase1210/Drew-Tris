@@ -38,7 +38,8 @@ export default class Board {
         fullRows.push(block[0]);
       }
     });
-    clearRowAnimation(fullRows);
+    fullRows.sort((a, b) => a - b);
+    // clearRowAnimation(fullRows);
     fullRows.forEach(rowNum => {
       this.grid.splice(rowNum, 1);
       this.grid.unshift(new Array(10).fill(0));
