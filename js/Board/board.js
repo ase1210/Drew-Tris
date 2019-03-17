@@ -1,6 +1,6 @@
 import { drawGrid } from "../View/canvas-templates";
 
-class Board {
+export default class Board {
   constructor(height = 21, width = 10) {
     this.height = height;
     this.width = width;
@@ -132,5 +132,3 @@ class Board {
     }
   }
 }
-
-export default Board;

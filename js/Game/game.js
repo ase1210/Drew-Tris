@@ -44,18 +44,18 @@ export default class Game {
       this._fillAndShuffleBag();
     }
   }
-  clearRows() {
+  _clearRows() {
     console.log("CLEAR");
   }
-  setScore() {
+  _setScore() {
     console.log("score");
   }
 
   freezePiece() {
     clearTimeout(this.timeOut);
-    this.clearRows();
-    this.setScore();
-    if (this.gameOver()) {
+    this._clearRows();
+    this._setScore();
+    if (this._gameOver()) {
       console.log("GameOver");
       return;
     } else {
@@ -71,7 +71,7 @@ export default class Game {
     }
   }
 
-  gameOver() {
+  _gameOver() {
     let gameOver = this.board.grid[0].some(pos => pos);
     if (gameOver) {
       this.keyMap.removeEventListener();
