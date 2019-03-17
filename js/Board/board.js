@@ -1,4 +1,4 @@
-import { drawGrid } from "../View/canvas-templates";
+import { drawGrid, clearRowAnimation } from "../View/canvas-templates";
 
 export default class Board {
   constructor(height = 21, width = 10) {
@@ -38,7 +38,12 @@ export default class Board {
         fullRows.push(block[0]);
       }
     });
-    console.log(fullRows);
+    clearRowAnimation(fullRows);
+    fullRows.forEach(rowNum => {
+      this.grid.splice(rowNum, 1);
+      this.grid.unshift(new Array(10).fill(0));
+    });
+    return fullRows.length;
   }
 
   _isValidMove(currPos, newPos) {
