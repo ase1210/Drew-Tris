@@ -12,6 +12,7 @@ export default class Game {
     this._fillAndShuffleBag();
     this.currentPiece = this.bag.shift();
     this.keyMap = undefined;
+    this.rowsCleared = 0;
 
     this._tick = this._tick.bind(this);
     this._setKeyMap = this._setKeyMap.bind(this);
@@ -45,16 +46,27 @@ export default class Game {
     }
   }
   _clearRows() {
+    let rowsCleared = this.board.clearRows();
+    this.rowsCleared += rowsCleared;
     console.log("CLEAR");
+    return rowsCleared;
   }
-  _setScore() {
-    console.log("score");
+  _setScore(clearedRows) {
+    this.score += this.level * 25 * Math.pow(2, clearedRows);
+    console.log(this.score);
   }
 
-  freezePiece() {
+  _updateLevel() {
+    if (this.level < 10) {
+      this.level = Math.floor(this.rowsCleared / 10) + 1;
+    }
+  }
+
+  _freezePiece() {
     clearTimeout(this.timeOut);
-    this._clearRows();
-    this._setScore();
+    let rowsCleared = this._clearRows();
+    this._setScore(rowsCleared);
+    this._updateLevel();
     if (this._gameOver()) {
       console.log("GameOver");
       return;
@@ -65,7 +77,7 @@ export default class Game {
 
   _tick() {
     if (this.board.move("down")) {
-      this.freezePiece();
+      this._freezePiece();
     } else {
       this.timeOut = setTimeout(this._tick, 75 * (11 - this.level));
     }
