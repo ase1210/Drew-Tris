@@ -1,6 +1,6 @@
 export const drawGrid = grid => {
   const sq = 30;
-  const canvas = document.getElementById("canvas");
+  const canvas = document.getElementById("tetris");
   const c = canvas.getContext("2d");
 
   c.clearRect(0, 0, 300, 600);
@@ -17,7 +17,7 @@ export const drawGrid = grid => {
 
 export const clearRowAnimation = rowNums => {
   const sq = 30;
-  const canvas = document.getElementById("canvas");
+  const canvas = document.getElementById("tetris");
   const c = canvas.getContext("2d");
 
   for (let i = 0; i < rowNums.length; i++) {
