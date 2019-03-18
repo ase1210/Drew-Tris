@@ -3,39 +3,8 @@ const canvas = document.getElementById("title-canvas");
 const titleSection = document.getElementById("title-section");
 canvas.width = titleSection.offsetWidth;
 canvas.height = titleSection.offsetHeight;
-// console.log(canvas);
 
 var c = canvas.getContext("2d");
-
-// c.fillStyle = "blue";
-// c.fillRect(100, 100, 40, 40);
-// c.fillStyle = "red";
-// c.fillRect(200, 100, 40, 40);
-// c.fillStyle = "black";
-// c.fillRect(300, 300, 40, 40);
-
-//Line
-// c.beginPath();
-// c.moveTo(50, 300);
-// c.lineTo(100, 350);
-// c.lineTo(400, 300);
-// c.strokeStyle = "red";
-// c.stroke();
-
-// Arc
-
-// for (let i = 0; i < 50; i++) {
-//   let x = Math.random() * window.titleSection.offsetWidth;
-//   let y = Math.random() * window.titleSection.offsetHeight;
-//   let colors = ["blue", "green", "red", "pink", "brown", "black", "orange"];
-//   let colorIdx = Math.floor(Math.random() * colors.length);
-//   c.beginPath();
-//   c.arc(x, y, 30, 0, Math.PI * 2, false);
-//   c.strokeStyle = colors[colorIdx];
-//   c.stroke();
-// }
-
-// Animation
 
 let mouse = {
   x: undefined,
@@ -126,10 +95,10 @@ function animate() {
     circleArray[i].update();
   }
   c.fillStyle = "white";
-  c.fillRect((titleSection.offsetWidth / 5) * 2, 0, 200, 70);
+  c.fillRect(window.innerWidth / 2 - 130, 0, 200, 70);
   c.fillStyle = "black";
   c.font = "" + 48 + "pt Roboto";
-  c.fillText("Pentris", (titleSection.offsetWidth / 5) * 2, 55);
+  c.fillText("Pentris", window.innerWidth / 2 - 130, 55);
 }
 init();
 animate();
