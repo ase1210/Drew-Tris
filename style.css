@@ -5,6 +5,10 @@ body,
 header,
 nav,
 h1,
+h3,
+h4,
+h5,
+h6,
 a,
 ul,
 li,
@@ -71,9 +75,12 @@ input[type="submit"] {
 
 html {
   font-size: 16px;
+  font-family: "Roboto", sans-serif;
 }
 #root {
-  display: flex;
+  background-color: #edf7f5;
+  display: grid;
+  grid-template-rows: 90px 1fr 40px;
   flex-direction: column;
   width: 100vw;
   height: 100vh;
@@ -83,13 +90,16 @@ html {
 .title-section {
   height: 70px;
   width: calc(100vw - 50px);
-  /* border: 5px solid black; */
+  border: 1px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 h1 {
   font-size: 4rem;
+}
+h3 {
+  font-size: 1.5rem;
 }
 
 p {
@@ -100,9 +110,10 @@ p {
 .game-section {
   min-height: 70px;
   width: calc(100vw - 50px);
-  border: 5px solid black;
-  display: flex;
-  justify-content: center;
+  /* border: 5px solid black; */
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-rows: auto;
 }
 .game {
   display: flex;
@@ -113,27 +124,45 @@ p {
   flex-direction: column;
 }
 
+.section-title {
+  font-weight: 700;
+}
+
 #tetris {
-  border: 5px solid black;
+  margin: 2px;
+  border: 2px solid black;
   max-height: 600px;
   max-width: 300px;
   width: 50vw;
   height: 100vw;
   box-sizing: border-box;
 }
-#next-piece {
-  border: 5px solid black;
+#next-piece,
+#saved-piece {
+  border: 2px solid black;
   max-height: 140px;
   max-width: 140px;
-  width: 10vw;
-  height: 10vw;
+  /* width: 10vw;
+  height: 10vw; */
   box-sizing: border-box;
 }
-#score {
-  border: 5px solid black;
+#next-piece {
+  /* margin-left: 2px; */
+}
+#saved-piece {
+  /* margin-right: 2px; */
+}
+#score,
+#level,
+#rows {
+  margin-left: 2px;
+  /* background: lightskyblue; */
+  border: 2px solid black;
   max-height: 50px;
   max-width: 140px;
-  width: 10vw;
-  height: 3vw;
+  /* width: 10vw;
+  height: 3vw; */
+  min-height: 20px;
+  line-height: 20px;
   box-sizing: border-box;
 }
