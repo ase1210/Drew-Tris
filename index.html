@@ -4,10 +4,40 @@
     <meta charset="UTF-8" />
     <title>Tetris</title>
     <script src="bundle.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400i,700i"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
   </head>
   <body>
-    <div id="root">Does this work?</div>
-    <canvas width="300" height="600" id="tetris"></canvas>
+    <div id="root">
+      <section class="title-section" id="title-section">
+        <canvas id="title-canvas"></canvas>
+        <script src="./js/View/title-background.js"></script>
+        <!-- <h1>PenTris</h1> -->
+      </section>
+      <section>INSTRUCTIONS SETTINGS</section>
+      <section class="game-section">
+        <div class="game">
+          <div class="game-data">
+            <p>Saved Piece</p>
+            <canvas witdh="300" height="300" id="next-piece"></canvas>
+          </div>
+          <div>
+            <canvas id="tetris"></canvas>
+          </div>
+          <div class="game-data">
+            <p>Next Piece</p>
+
+            <canvas witdh="300" height="300" id="next-piece"></canvas>
+            <p>Score</p>
+
+            <canvas witdh="300" height="300" id="score"></canvas>
+          </div>
+        </div>
+      </section>
+      <section>LI ETC</section>
+    </div>
   </body>
 </html>
