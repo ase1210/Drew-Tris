@@ -1,5 +1,6 @@
 import Board from "../Board/board";
 import KeyMap from "../KeyMap/keyMap";
+import { previewPiece } from "../View/canvas-templates";
 
 export default class Game {
   constructor(pieces, difficulty, colors, board = new Board()) {
@@ -21,6 +22,8 @@ export default class Game {
   }
 
   play() {
+    // let removePlayEvent = document.getElementbyId('play');
+
     this._setKeyMap();
     this._setNextPiece();
   }
@@ -47,6 +50,7 @@ export default class Game {
   _setNextPiece() {
     this.board.setCurrentPiece(this.currentPiece);
     this.currentPiece = this.bag.shift();
+    previewPiece(this.currentPiece, "next-piece");
     this._tick();
     if (this.bag.length === 0) {
       this._fillAndShuffleBag();
@@ -103,6 +107,8 @@ export default class Game {
     let gameOver = this.board.grid[0].some(pos => pos);
     if (gameOver) {
       this.keyMap.removeEventListener();
+      // let play = document.getElementById("play");
+      // play.addEventListener('click', this.play())
     }
     return gameOver;
   }

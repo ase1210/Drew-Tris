@@ -39,6 +39,14 @@ document.addEventListener("DOMContentLoaded", () => {
   c.fillStyle = "lightgrey";
   c.fillRect(0, 0, 10 * sq, 20 * sq);
 
+  const play = document.getElementById("play");
+
+  const start = () => {
+    game.play();
+    play.removeEventListener("click", start);
+  };
+  play.addEventListener("click", start);
+  // const removeHandler = () => {};
   const pieces = [];
   // pieces.push(new PJPiece("#D6AFFF"));
   // pieces.push(new PLPiece("#AFAFAF"));
