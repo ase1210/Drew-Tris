@@ -94,11 +94,11 @@ function animate() {
   for (let i = 0; i < circleArray.length; i++) {
     circleArray[i].update();
   }
-  c.fillStyle = "white";
-  c.fillRect(window.innerWidth / 2 - 130, 0, 200, 70);
+  c.fillStyle = "#EDF7F5";
+  c.fillRect((window.innerWidth / 5) * 2 + 25, 1, 192, 68);
   c.fillStyle = "black";
   c.font = "" + 48 + "pt Roboto";
-  c.fillText("Pentris", window.innerWidth / 2 - 130, 55);
+  c.fillText("Pentris", (window.innerWidth / 5) * 2 + 20, 55);
 }
 init();
 animate();
