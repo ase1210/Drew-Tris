@@ -2,8 +2,10 @@ import Board from "../Board/board";
 import KeyMap from "../KeyMap/keyMap";
 
 export default class Game {
-  constructor(pieces, board = new Board()) {
+  constructor(pieces, difficulty, colors, board = new Board()) {
     this.board = board;
+    this.difficulty = difficulty;
+    this.colors = colors;
     this.pieces = pieces;
     this.score = 0;
     this.level = 1;
@@ -51,18 +53,29 @@ export default class Game {
     }
   }
   _clearRows() {
+    let rowsEl = document.getElementById("rows");
     let rowsCleared = this.board.clearRows();
     this.rowsCleared += rowsCleared;
+    rowsEl.innerHTML = this.rowsCleared;
     return rowsCleared;
   }
   _setScore(clearedRows) {
+    let scoreEl = document.getElementById("score");
     this.score += this.level * 25 * Math.pow(2, clearedRows);
+    let formattedScore = this.score.toString();
+    // if (formattedScore.length > 3) {
+    //   formattedScore = formatte
+    // }
+
+    scoreEl.innerHTML = formattedScore;
   }
 
   _updateLevel() {
+    let levelEl = document.getElementById("level");
     if (this.level < 10) {
-      this.level = Math.floor(this.rowsCleared / 10) + 1;
+      this.level = Math.floor(this.rowsCleared / 10) + this.difficulty;
     }
+    levelEl.innerHTML = this.level;
   }
 
   _freezePiece() {

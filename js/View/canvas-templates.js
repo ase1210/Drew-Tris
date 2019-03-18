@@ -29,3 +29,23 @@ export const clearRowAnimation = rowNums => {
     c.fillRect(0, (rowNums[i] - 1) * sq, sq * 10, sq);
   }
 };
+
+export const previewPiece = (piece, eleId) => {
+  const canvas = document.getElementById(eleId);
+  const c = canvas.getContext("2d");
+  const sq = canvas.width / 5;
+  canvas.width = sq * 5;
+  canvas.height = sq * 4;
+  c.fillStyle = "black";
+  c.fillRect(0, 0, 5 * sq, 4 * sq);
+  let pieceState = piece.initialState;
+  for (let i = 0; i < pieceState.length; i++) {
+    c.fillStyle = piece.color;
+    c.fillRect(
+      sq * (pieceState[i][1] - piece.x + (5 - piece.width) / 2),
+      sq * (pieceState[i][0] - piece.y + (4 - piece.height) / 2),
+      sq,
+      sq
+    );
+  }
+};

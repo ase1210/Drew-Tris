@@ -94,7 +94,7 @@ function animate() {
   for (let i = 0; i < circleArray.length; i++) {
     circleArray[i].update();
   }
-  c.fillStyle = "#EDF7F5";
+  c.fillStyle = "#F2F2F2";
   c.fillRect((window.innerWidth / 5) * 2 + 25, 1, 192, 68);
   c.fillStyle = "black";
   c.font = "" + 48 + "pt Roboto";
