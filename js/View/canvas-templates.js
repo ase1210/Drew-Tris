@@ -1,9 +1,11 @@
 export const drawGrid = grid => {
-  const sq = 30;
   const canvas = document.getElementById("tetris");
   const c = canvas.getContext("2d");
+  const sq = canvas.width / 10;
+  canvas.width = sq * 10;
+  canvas.height = sq * 20;
 
-  c.clearRect(0, 0, 300, 600);
+  c.clearRect(0, 0, sq * 10, sq * 20);
 
   for (let i = 0; i < grid.length; i++) {
     for (let j = 0; j < grid[0].length; j++) {
@@ -16,9 +18,11 @@ export const drawGrid = grid => {
 };
 
 export const clearRowAnimation = rowNums => {
-  const sq = 30;
   const canvas = document.getElementById("tetris");
   const c = canvas.getContext("2d");
+  const sq = canvas.width / 10;
+  canvas.width = sq * 10;
+  canvas.height = sq * 20;
 
   for (let i = 0; i < rowNums.length; i++) {
     c.fillStyle = "#ffffff";
