@@ -42,12 +42,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const play = document.getElementById("play");
 
   const start = () => {
+    const play = document.getElementById("play");
+    play.style.zIndex = "-1";
     game.play();
-    play.removeEventListener("click", start);
+    // play.removeEventListener("click", start);
   };
   play.addEventListener("click", start);
-  // const removeHandler = () => {};
-  const pieces = [];
+
+  const classicPieces = [];
   // pieces.push(new PJPiece("#D6AFFF"));
   // pieces.push(new PLPiece("#AFAFAF"));
   // pieces.push(new PWPiece("#AFAFAF"));
@@ -59,13 +61,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // pieces.push(new PSPiece("#A0E8B5"));
   // pieces.push(new PZPiece("#14CFBD"));
 
-  pieces.push(new LPiece("#E8B8AB"));
-  pieces.push(new OPiece("#B9CBFF"));
-  pieces.push(new JPiece("#A0E8B5"));
-  pieces.push(new SPiece("#14CFBD"));
-  pieces.push(new ZPiece("#D68E05"));
-  pieces.push(new IPiece("#FFF19C"));
-  pieces.push(new TPiece("#D6AFFF"));
+  classicPieces.push(new LPiece("#E8B8AB"));
+  classicPieces.push(new OPiece("#B9CBFF"));
+  classicPieces.push(new JPiece("#A0E8B5"));
+  classicPieces.push(new SPiece("#14CFBD"));
+  classicPieces.push(new ZPiece("#D68E05"));
+  classicPieces.push(new IPiece("#FFF19C"));
+  classicPieces.push(new TPiece("#D6AFFF"));
   const game = new Game(pieces, 1, colors);
   window.game = game;
   previewPiece(pieces[0], "saved-piece");

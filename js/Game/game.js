@@ -18,7 +18,7 @@ export default class Game {
     this.rowsCleared = 0;
 
     this._tick = this._tick.bind(this);
-    this._setKeyMap = this._setKeyMap.bind(this);
+    // this._setKeyMap = this._setKeyMap.bind(this);
   }
 
   play() {
@@ -44,6 +44,9 @@ export default class Game {
   move(direction) {
     if (this.board.move(direction)) {
       this._freezePiece();
+      // } else if (direction === "down") {
+      //   clearTimeout(this.timeout);
+      //   this.timeOut = setTimeout(this._tick, 75 * (11 - this.level));
     }
   }
 
