@@ -50,16 +50,17 @@ document.addEventListener("DOMContentLoaded", () => {
   play.addEventListener("click", start);
 
   const classicPieces = [];
-  // pieces.push(new PJPiece("#D6AFFF"));
-  // pieces.push(new PLPiece("#AFAFAF"));
-  // pieces.push(new PWPiece("#AFAFAF"));
-  // pieces.push(new PTPiece("#D6AFFF"));
-  // pieces.push(new PUPiece("#FFF19C"));
-  // pieces.push(new PBPiece("#D68E05"));
-  // pieces.push(new PDPiece("#E8B8AB"));
-  // pieces.push(new PXPiece("#B9CBFF"));
-  // pieces.push(new PSPiece("#A0E8B5"));
-  // pieces.push(new PZPiece("#14CFBD"));
+  const pieces = [];
+  pieces.push(new PJPiece("#D6AFFF"));
+  pieces.push(new PLPiece("#AFAFAF"));
+  pieces.push(new PWPiece("#AFAFAF"));
+  pieces.push(new PTPiece("#D6AFFF"));
+  pieces.push(new PUPiece("#FFF19C"));
+  pieces.push(new PBPiece("#D68E05"));
+  pieces.push(new PDPiece("#E8B8AB"));
+  pieces.push(new PXPiece("#B9CBFF"));
+  pieces.push(new PSPiece("#A0E8B5"));
+  pieces.push(new PZPiece("#14CFBD"));
 
   classicPieces.push(new LPiece("#E8B8AB"));
   classicPieces.push(new OPiece("#B9CBFF"));
@@ -70,6 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
   classicPieces.push(new TPiece("#D6AFFF"));
   const game = new Game(pieces, 1, colors);
   window.game = game;
-  previewPiece(pieces[0], "saved-piece");
-  previewPiece(pieces[1], "next-piece");
+  previewPiece(pieces[8], "saved-piece");
+  previewPiece(pieces[9], "next-piece");
 });
