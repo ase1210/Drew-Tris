@@ -17,15 +17,68 @@
         <script src="./js/View/title-background.js"></script>
       </section>
       <section class="game-section">
-        <div>
+        <div class="game-info">
           <div>
-            <h3>Instructions</h3>
+            <h3>Welcome to Drew-Tris</h3>
+            <p>
+              This game is modeled off of the classic game Tetris. Play classic
+              Tetris, wacky Pent-Tris or combo mode.
+            </p>
           </div>
           <div>
             <h3>Game Mode Selection</h3>
+            <div class="game-mode">
+              <div class="game-selection-button" id="classic">
+                Classic
+              </div>
+              <div class="game-selection-button" id="pentris">Wacky</div>
+              <div class="game-selection-button" id="combo">Combo</div>
+            </div>
           </div>
           <div>
             <h3>Controls</h3>
+            <div class="controls">
+              <div class="controls-header">
+                Actions
+                <div>Move Left</div>
+                <div>Move Right</div>
+                <div>Move Down</div>
+                <div>
+                  Rotate
+                  <img
+                    src="./src/images/rotate-clockwise.png"
+                    alt="rotate-clockwise"
+                  />
+                </div>
+                <div id="rotate-clockwise">
+                  Rotate
+                  <img
+                    src="./src/images/rotate-counter-clockwise.png"
+                    alt="rotate-counter-clockwise"
+                  />
+                </div>
+                <div>Swap Piece</div>
+                <div>Pause/Resume</div>
+              </div>
+              <div class="controls-header">
+                Inputs
+                <div>
+                  <img src="./src/images/left-arrow.png" alt="left-arrow" />
+                </div>
+                <div>
+                  <img src="./src/images/right-arrow.png" alt="right-arrow" />
+                </div>
+                <div>
+                  <img src="./src/images/down-arrow.png" alt="down-arrow" />
+                </div>
+                <div>
+                  <img src="./src/images/up-arrow.png" alt="up-arrow" />, X
+                </div>
+                <div>Z</div>
+                <div>S</div>
+                <div>P</div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="game">
@@ -44,7 +97,7 @@
             <p id="level">1</p>
             <p class="section-title"># Rows</p>
             <p id="rows">0</p>
-            <div class="play" id="play" ">Play</div>
+            <div class="play" id="play">Play</div>
           </div>
         </div>
       </section>
