@@ -77,12 +77,12 @@ let circleArray = [];
 
 function init() {
   circleArray = [];
-  for (let i = 0; i < titleSection.offsetHeight * 2; i++) {
+  for (let i = 0; i < 100; i++) {
     let radius = Math.floor(Math.random() * 10) + 1;
     let x = Math.random() * (titleSection.offsetWidth - radius * 2) + radius;
     let y = Math.random() * (titleSection.offsetHeight - radius * 2) + radius;
-    let dx = (Math.random() - 0.5) * 3;
-    let dy = (Math.random() - 0.5) * 3;
+    let dx = (Math.random() - 0.5) * 2;
+    let dy = (Math.random() - 0.5) * 2;
     circleArray.push(new Circle(x, y, dx, dy, radius));
   }
 }
@@ -95,10 +95,10 @@ function animate() {
     circleArray[i].update();
   }
   c.fillStyle = "#F2F2F2";
-  c.fillRect((window.innerWidth / 5) * 2 + 25, 1, 192, 68);
+  c.fillRect(355, 1, 260, 68);
   c.fillStyle = "black";
   c.font = "" + 48 + "pt Roboto";
-  c.fillText("Pentris", (window.innerWidth / 5) * 2 + 20, 55);
+  c.fillText("Drew-Tris", 350, 55);
 }
 init();
 animate();
