@@ -16,16 +16,25 @@ import PWPiece from "./js/Pieces/Pentris/pw-piece";
 import PTPiece from "./js/Pieces/Pentris/pt-piece";
 import PLPiece from "./js/Pieces/Pentris/pl-piece";
 import PJPiece from "./js/Pieces/Pentris/pj-piece";
-import { previewPiece } from "./js/View/canvas-templates";
+import { previewPiece, drawGamePreview } from "./js/View/canvas-templates";
 
 const colors = [
-  "#E8B8AB",
-  "#B9CBFF",
-  "#A0E8B5",
-  "#14CFBD",
-  "#D68E05",
-  "#FFF19C",
-  "#D6AFFF"
+  // "#E8B8AB",
+  // "#B9CBFF",
+  // "#A0E8B5",
+  // "#14CFBD",
+  // "#D68E05",
+  // "#FFF19C",
+  // "#D6AFFF",
+
+  //rainbow in order
+  "#FF0000",
+  "#FF7F00",
+  "#FFFF00",
+  "#00FF00",
+  "#0000FF",
+  "#4b0082 ",
+  "#9400D3"
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -36,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
   canvas.width = sq * 10;
   canvas.height = sq * 20;
 
-  c.fillStyle = "lightgrey";
+  c.fillStyle = "blue";
   c.fillRect(0, 0, 10 * sq, 20 * sq);
 
   const play = document.getElementById("play");
@@ -62,15 +71,16 @@ document.addEventListener("DOMContentLoaded", () => {
   pieces.push(new PSPiece("#A0E8B5"));
   pieces.push(new PZPiece("#14CFBD"));
 
-  classicPieces.push(new LPiece("#E8B8AB"));
-  classicPieces.push(new OPiece("#B9CBFF"));
-  classicPieces.push(new JPiece("#A0E8B5"));
-  classicPieces.push(new SPiece("#14CFBD"));
-  classicPieces.push(new ZPiece("#D68E05"));
-  classicPieces.push(new IPiece("#FFF19C"));
-  classicPieces.push(new TPiece("#D6AFFF"));
-  const game = new Game(pieces, 1, colors);
+  classicPieces.push(new LPiece("#D6AFFF"));
+  classicPieces.push(new OPiece("#AFAFAF"));
+  classicPieces.push(new JPiece("#FFF19C"));
+  classicPieces.push(new SPiece("#D68E05"));
+  classicPieces.push(new ZPiece("#E8B8AB"));
+  classicPieces.push(new IPiece("#A0E8B5 "));
+  classicPieces.push(new TPiece("#14CFBD"));
+  const game = new Game(classicPieces, 1, colors);
   window.game = game;
+  drawGamePreview(classicPieces, colors);
   previewPiece(pieces[8], "saved-piece");
   previewPiece(pieces[9], "next-piece");
 });
