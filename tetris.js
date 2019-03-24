@@ -38,16 +38,6 @@ const colors = [
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
-  // const board = new Board();
-  const canvas = document.getElementById("tetris");
-  const c = canvas.getContext("2d");
-  const sq = canvas.width / 10;
-  canvas.width = sq * 10;
-  canvas.height = sq * 20;
-
-  c.fillStyle = "blue";
-  c.fillRect(0, 0, 10 * sq, 20 * sq);
-
   const play = document.getElementById("play");
 
   const start = () => {
