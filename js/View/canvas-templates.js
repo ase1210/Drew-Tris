@@ -27,97 +27,30 @@ export const drawGamePreview = pieces => {
   c.fillStyle = "black";
   c.fillRect(0, 0, 10 * sq, 20 * sq);
 
-  c.fillStyle = "red";
-  c.fillRect(5 * sq, 20, sq, sq);
-  c.fillRect(6 * sq, 20, sq, sq);
-  c.fillRect(4 * sq, 20, sq, sq);
-  c.fillRect(5 * sq, sq + 20, sq, sq);
-  // c.lineWidth = 2;
-  // c.strokeStyle = "black";
-  // c.strokeRect(5 * sq, 20, sq, sq);
-  // c.strokeRect(6 * sq, 20, sq, sq);
-  // c.strokeRect(4 * sq, 20, sq, sq);
-  // c.strokeRect(5 * sq, sq + 20, sq, sq);
-
-  // Long Piece with Canvas
-  c.fillStyle = "blue";
-  c.fillRect(5 * sq, 2 * sq + 30, sq, sq);
-  c.fillRect(6 * sq, 2 * sq + 30, sq, sq);
-  c.fillRect(4 * sq, 2 * sq + 30, sq, sq);
-  c.fillRect(7 * sq, 2 * sq + 30, sq, sq);
-  // c.lineWidth = 2;
-  // c.strokeStyle = "black";
-  // c.strokeRect(5 * sq, 2 * sq + 30, sq, sq);
-  // c.strokeRect(6 * sq, 2 * sq + 30, sq, sq);
-  // c.strokeRect(4 * sq, 2 * sq + 30, sq, sq);
-  // c.strokeRect(7 * sq, 2 * sq + 30, sq, sq);
-
-  // Z Piece with Canvas
-  c.fillStyle = "green";
-  c.fillRect(5 * sq, 3 * sq + 40, sq, sq);
-  c.fillRect(6 * sq, 4 * sq + 40, sq, sq);
-  c.fillRect(5 * sq, 4 * sq + 40, sq, sq);
-  c.fillRect(4 * sq, 3 * sq + 40, sq, sq);
-  // c.lineWidth = 2;
-  // c.strokeStyle = "black";
-  // c.strokeRect(5 * sq, 3 * sq + 40, sq, sq);
-  // c.strokeRect(6 * sq, 4 * sq + 40, sq, sq);
-  // c.strokeRect(5 * sq, 4 * sq + 40, sq, sq);
-  // c.strokeRect(4 * sq, 3 * sq + 40, sq, sq);
-
-  // Reverse Z Piece with Canvas
-  c.fillStyle = "indigo";
-  c.fillRect(5 * sq, 5 * sq + 130, sq, sq);
-  c.fillRect(6 * sq, 5 * sq + 130, sq, sq);
-  c.fillRect(5 * sq, 6 * sq + 130, sq, sq);
-  c.fillRect(4 * sq, 6 * sq + 130, sq, sq);
-  // c.lineWidth = 2;
-  // c.strokeStyle = "black";
-  // c.strokeRect(5 * sq, 5 * sq + 130, sq, sq);
-  // c.strokeRect(6 * sq, 5 * sq + 130, sq, sq);
-  // c.strokeRect(5 * sq, 6 * sq + 130, sq, sq);
-  // c.strokeRect(4 * sq, 6 * sq + 130, sq, sq);
-
-  // L Piece with Canvas
-  c.fillStyle = "yellow";
-  c.fillRect(5 * sq, 7 * sq + 140, sq, sq);
-  c.fillRect(6 * sq, 7 * sq + 140, sq, sq);
-  c.fillRect(4 * sq, 7 * sq + 140, sq, sq);
-  c.fillRect(4 * sq, 8 * sq + 140, sq, sq);
-  // c.lineWidth = 2;
-  // c.strokeStyle = "black";
-  // c.strokeRect(5 * sq, 7 * sq + 140, sq, sq);
-  // c.strokeRect(6 * sq, 7 * sq + 140, sq, sq);
-  // c.strokeRect(4 * sq, 7 * sq + 140, sq, sq);
-  // c.strokeRect(4 * sq, 8 * sq + 140, sq, sq);
-
-  // Reverse L Piece with Canvas
-  c.fillStyle = "orange";
-  c.fillRect(5 * sq, 9 * sq + 150, sq, sq);
-  c.fillRect(6 * sq, 9 * sq + 150, sq, sq);
-  c.fillRect(4 * sq, 9 * sq + 150, sq, sq);
-  c.fillRect(6 * sq, 10 * sq + 150, sq, sq);
-  // c.lineWidth = 2;
-  // c.strokeStyle = "black";
-  // c.strokeRect(5 * sq, 9 * sq + 150, sq, sq);
-  // c.strokeRect(6 * sq, 9 * sq + 150, sq, sq);
-  // c.strokeRect(4 * sq, 9 * sq + 150, sq, sq);
-  // c.strokeRect(6 * sq, 10 * sq + 150, sq, sq);
-
-  // Square Piece with Canvas
-  c.fillStyle = "violet";
-  c.fillRect(5 * sq, 11 * sq + 160, sq, sq);
-  c.fillRect(6 * sq, 11 * sq + 160, sq, sq);
-  c.fillRect(5 * sq, 12 * sq + 160, sq, sq);
-  c.fillRect(6 * sq, 12 * sq + 160, sq, sq);
-  // c.lineWidth = 2;
-  // c.strokeStyle = "black";
-  // c.strokeRect(5 * sq, 11 * sq + 160, sq, sq);
-  // c.strokeRect(6 * sq, 11 * sq + 160, sq, sq);
-  // c.strokeRect(5 * sq, 12 * sq + 160, sq, sq);
-  // c.strokeRect(6 * sq, 12 * sq + 160, sq, sq);
-
-  // c.clearRect(0, 0, sq * 10, sq * 20);
+  pieces.forEach((piece, idx) => {
+    piece.initialState.forEach(block => {
+      c.fillStyle = piece.color;
+      c.fillRect(
+        sq * (block[1] - piece.x + (10 - piece.width) / 2),
+        sq *
+          (block[0] -
+            piece.y +
+            ((19 / pieces.length) * (idx + 1) - piece.height)),
+        sq,
+        sq
+      );
+      c.strokeStyle = "black";
+      c.strokeRect(
+        sq * (block[1] - piece.x + (10 - piece.width) / 2),
+        sq *
+          (block[0] -
+            piece.y +
+            ((19 / pieces.length) * (idx + 1) - piece.height)),
+        sq,
+        sq
+      );
+    });
+  });
 };
 
 export const clearRowAnimation = rowNums => {
@@ -145,6 +78,13 @@ export const previewPiece = (piece, eleId) => {
   for (let i = 0; i < pieceState.length; i++) {
     c.fillStyle = piece.color;
     c.fillRect(
+      sq * (pieceState[i][1] - piece.x + (6 - piece.width) / 2),
+      sq * (pieceState[i][0] - piece.y + (4 - piece.height) / 2),
+      sq,
+      sq
+    );
+    c.strokeStyle = "black";
+    c.strokeRect(
       sq * (pieceState[i][1] - piece.x + (6 - piece.width) / 2),
       sq * (pieceState[i][0] - piece.y + (4 - piece.height) / 2),
       sq,
