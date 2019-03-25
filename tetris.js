@@ -1,22 +1,6 @@
 import Game from "./js/Game/game";
-import IPiece from "./js/Pieces/Classic/i-piece";
-import SPiece from "./js/Pieces/Classic/s-piece";
-import TPiece from "./js/Pieces/Classic/t-piece";
-import ZPiece from "./js/Pieces/Classic/z-piece";
-import OPiece from "./js/Pieces/Classic/o-piece";
-import JPiece from "./js/Pieces/Classic/j-piece";
-import LPiece from "./js/Pieces/Classic/l-piece";
-import PXPiece from "./js/Pieces/Pentris/px-piece";
-import PZPiece from "./js/Pieces/Pentris/pz-piece";
-import PSPiece from "./js/Pieces/Pentris/ps-piece";
-import PBPiece from "./js/Pieces/Pentris/pb-piece";
-import PDPiece from "./js/Pieces/Pentris/pd-piece";
-import PUPiece from "./js/Pieces/Pentris/pu-piece";
-import PWPiece from "./js/Pieces/Pentris/pw-piece";
-import PTPiece from "./js/Pieces/Pentris/pt-piece";
-import PLPiece from "./js/Pieces/Pentris/pl-piece";
-import PJPiece from "./js/Pieces/Pentris/pj-piece";
 import { previewPiece, drawGamePreview } from "./js/View/canvas-templates";
+import { pieces } from "./js/Pieces/piece-options";
 
 const colors = [
   // "#E8B8AB",
@@ -39,38 +23,39 @@ const colors = [
 
 document.addEventListener("DOMContentLoaded", () => {
   const play = document.getElementById("play");
+  const classic = document.getElementById("classic");
+  const pentris = document.getElementById("pentris");
+  const combo = document.getElementById("combo");
 
-  const start = () => {
+  const start = e => {
     const play = document.getElementById("play");
-    play.style.zIndex = "-1";
-    game.play();
-    // play.removeEventListener("click", start);
+
+    if (play.innerText === "Play") {
+      const selected = document.getElementsByClassName("selected")[0];
+      let game = new Game(pieces[selected.id], 1, colors);
+      game.play();
+      play.innerText = "Pause";
+    } else {
+      game.pause();
+    }
   };
+
+  const chooseMode = e => {
+    const selected = document.getElementsByClassName("selected")[0];
+    selected.className = "game-selection-button";
+    e.target.className = "selected";
+    previewPiece(pieces[e.target.id][0], "saved-piece");
+    previewPiece(pieces[e.target.id][4], "next-piece");
+
+    // drawGamePreview(pieces[e.target.id])
+  };
+
   play.addEventListener("click", start);
+  classic.addEventListener("click", chooseMode);
+  pentris.addEventListener("click", chooseMode);
+  combo.addEventListener("click", chooseMode);
 
-  const classicPieces = [];
-  const pieces = [];
-  pieces.push(new PJPiece("#D6AFFF"));
-  pieces.push(new PLPiece("#AFAFAF"));
-  pieces.push(new PWPiece("#AFAFAF"));
-  pieces.push(new PTPiece("#D6AFFF"));
-  pieces.push(new PUPiece("#FFF19C"));
-  pieces.push(new PBPiece("#D68E05"));
-  pieces.push(new PDPiece("#E8B8AB"));
-  pieces.push(new PXPiece("#B9CBFF"));
-  pieces.push(new PSPiece("#A0E8B5"));
-  pieces.push(new PZPiece("#14CFBD"));
-
-  classicPieces.push(new LPiece("#D6AFFF"));
-  classicPieces.push(new OPiece("#AFAFAF"));
-  classicPieces.push(new JPiece("#FFF19C"));
-  classicPieces.push(new SPiece("#D68E05"));
-  classicPieces.push(new ZPiece("#E8B8AB"));
-  classicPieces.push(new IPiece("#A0E8B5 "));
-  classicPieces.push(new TPiece("#14CFBD"));
-  const game = new Game(classicPieces, 1, colors);
-  window.game = game;
-  drawGamePreview(classicPieces, colors);
-  previewPiece(pieces[8], "saved-piece");
-  previewPiece(pieces[9], "next-piece");
+  drawGamePreview(pieces.classic);
+  previewPiece(pieces.classic[0], "saved-piece");
+  previewPiece(pieces.classic[1], "next-piece");
 });
