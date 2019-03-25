@@ -11,13 +11,13 @@ export const drawGrid = grid => {
     for (let j = 0; j < grid[0].length; j++) {
       c.fillStyle = grid[i][j] || "black";
       c.fillRect(j * sq, (i - 1) * sq, sq, sq);
-      c.strokeStyle = "rgba(255,255,255,0.2)";
+      c.strokeStyle = "black";
       c.strokeRect(j * sq, (i - 1) * sq, sq, sq);
     }
   }
 };
 
-export const drawGamePreview = (colors, pieces) => {
+export const drawGamePreview = pieces => {
   const canvas = document.getElementById("tetris");
   const c = canvas.getContext("2d");
   const sq = canvas.width / 10;
@@ -136,16 +136,16 @@ export const clearRowAnimation = rowNums => {
 export const previewPiece = (piece, eleId) => {
   const canvas = document.getElementById(eleId);
   const c = canvas.getContext("2d");
-  const sq = canvas.width / 5;
-  canvas.width = sq * 5;
+  const sq = canvas.width / 6;
+  canvas.width = sq * 6;
   canvas.height = sq * 4;
   c.fillStyle = "black";
-  c.fillRect(0, 0, 5 * sq, 4 * sq);
+  c.fillRect(0, 0, 6 * sq, 4 * sq);
   let pieceState = piece.initialState;
   for (let i = 0; i < pieceState.length; i++) {
     c.fillStyle = piece.color;
     c.fillRect(
-      sq * (pieceState[i][1] - piece.x + (5 - piece.width) / 2),
+      sq * (pieceState[i][1] - piece.x + (6 - piece.width) / 2),
       sq * (pieceState[i][0] - piece.y + (4 - piece.height) / 2),
       sq,
       sq
