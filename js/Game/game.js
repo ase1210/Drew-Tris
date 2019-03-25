@@ -11,22 +11,22 @@ export default class Game {
     this.score = 0;
     this.level = 1;
     this.bag = [];
-    this.timeOut = undefined;
+    this.timeOut = null;
     this._fillAndShuffleBag();
+    this.swapped = false;
     this.savedPiece = this.bag.shift();
-    this.currentPiece = this.bag.shift();
-    this.keyMap = undefined;
+    this.currentPiece = null;
+    this.nextPiece = this.bag.shift();
+    this.keyMap = null;
     this.rowsCleared = 0;
 
     this._tick = this._tick.bind(this);
-    // this._setKeyMap = this._setKeyMap.bind(this);
   }
 
   play() {
-    // let removePlayEvent = document.getElementbyId('play');
-
     this._setKeyMap();
     this._setNextPiece();
+    previewPiece(this.savedPiece, "saved-piece");
   }
 
   pause() {
@@ -36,7 +36,7 @@ export default class Game {
       play.innerText = "Resume";
       this.keyMap.removeEventListener();
       this.keyMap = new KeyMap(this._pauseKeys());
-      //render paused board
+      //RENDER paused board
     } else {
       this.keyMap.removeEventListener();
       this.keyMap = new KeyMap(this._keys());
@@ -55,6 +55,7 @@ export default class Game {
       },
       KeyX: () => this.board.rotateClockwise(),
       KeyP: () => this.pause(),
+      KeyS: () => this._setSavedPiece(),
       ArrowUp: () => this.board.rotateClockwise(),
       ArrowDown: () => this.move("down"),
       ArrowLeft: () => this.move("left"),
@@ -72,14 +73,28 @@ export default class Game {
   }
 
   _setNextPiece() {
-    this.board.setCurrentPiece(this.currentPiece);
-    this.currentPiece = this.bag.shift();
-    previewPiece(this.currentPiece, "next-piece");
+    this.board.setCurrentPiece(this.nextPiece);
+    this.currentPiece = this.nextPiece;
+    this.nextPiece = this.bag.shift();
+    previewPiece(this.nextPiece, "next-piece");
+    this.swapped = false;
     this._tick();
     if (this.bag.length === 0) {
       this._fillAndShuffleBag();
     }
   }
+
+  _setSavedPiece() {
+    if (!this.swapped) {
+      this.board.setSavedPiece(this.savedPiece);
+      let temp = this.savedPiece;
+      this.savedPiece = this.currentPiece;
+      this.currentPiece = temp;
+      this.swapped = true;
+      previewPiece(this.savedPiece, "saved-piece");
+    }
+  }
+
   _clearRows() {
     let rowsCleared = this.board.clearRows();
     this.rowsCleared += rowsCleared;
@@ -134,8 +149,9 @@ export default class Game {
     let gameOver = this.board.grid[0].some(pos => pos);
     if (gameOver) {
       this.keyMap.removeEventListener();
-      // let play = document.getElementById("play");
-      // play.addEventListener('click', this.play())
+      let play = document.getElementById("play");
+      play.innerText = "Play";
+      // RENDER GAMEOVER WITH SCORE???
     }
     return gameOver;
   }
