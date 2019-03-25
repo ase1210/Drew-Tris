@@ -26,13 +26,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const classic = document.getElementById("classic");
   const pentris = document.getElementById("pentris");
   const combo = document.getElementById("combo");
+  let game = new Game(pieces.classic, 1, colors);
 
   const start = e => {
     const play = document.getElementById("play");
 
     if (play.innerText === "Play") {
       const selected = document.getElementsByClassName("selected")[0];
-      let game = new Game(pieces[selected.id], 1, colors);
+      game = new Game(pieces[selected.id], 1, colors);
       game.play();
       play.innerText = "Pause";
     } else {
@@ -46,8 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     e.target.className = "selected";
     previewPiece(pieces[e.target.id][0], "saved-piece");
     previewPiece(pieces[e.target.id][4], "next-piece");
-
-    // drawGamePreview(pieces[e.target.id])
+    drawGamePreview(pieces[e.target.id]);
   };
 
   play.addEventListener("click", start);
@@ -57,5 +57,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   drawGamePreview(pieces.classic);
   previewPiece(pieces.classic[0], "saved-piece");
-  previewPiece(pieces.classic[1], "next-piece");
+  previewPiece(pieces.classic[4], "next-piece");
 });
