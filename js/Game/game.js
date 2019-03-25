@@ -34,15 +34,22 @@ export default class Game {
     if (play.innerText === "Pause") {
       clearTimeout(this.timeOut);
       play.innerText = "Resume";
+      this.keyMap.removeEventListener();
+      this.keyMap = new KeyMap(this._pauseKeys());
       //render paused board
     } else {
+      this.keyMap.removeEventListener();
+      this.keyMap = new KeyMap(this._keys());
       play.innerText = "Pause";
       this._tick();
     }
   }
 
-  _setKeyMap() {
-    this.keyMap = new KeyMap({
+  _pauseKeys() {
+    return { KeyP: () => this.pause() };
+  }
+  _keys() {
+    return {
       KeyZ: () => {
         this.board.rotateCounterClockwise();
       },
@@ -52,7 +59,10 @@ export default class Game {
       ArrowDown: () => this.move("down"),
       ArrowLeft: () => this.move("left"),
       ArrowRight: () => this.move("right")
-    });
+    };
+  }
+  _setKeyMap() {
+    this.keyMap = new KeyMap(this._keys());
   }
 
   move(direction) {
