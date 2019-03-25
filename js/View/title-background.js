@@ -95,10 +95,10 @@ function animate() {
     circleArray[i].update();
   }
   c.fillStyle = "#F2F2F2";
-  c.fillRect(355, 1, 260, 68);
+  c.fillRect(305, 1, 260, 68);
   c.fillStyle = "black";
   c.font = "" + 48 + "pt Roboto";
-  c.fillText("Drew-Tris", 350, 55);
+  c.fillText("Drew-Tris", 300, 55);
 }
 init();
 animate();
