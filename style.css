@@ -76,15 +76,14 @@ body {
   display: flex;
   justify-content: center;
   min-width: 900px;
-  min-height: 800px;
   background-color: #f2f2f2;
 }
 #root {
   display: grid;
-  grid-template-rows: 90px 670px 40px;
+  grid-template-rows: 90px 1fr 40px;
   flex-direction: column;
   width: 900px;
-  height: 800px;
+  height: 100vh;
   padding: 20px;
   box-sizing: border-box;
 }
@@ -109,24 +108,25 @@ h3 {
 
 p {
   font-size: 1.1rem;
-  padding-left: 30px;
+  padding-left: 20px;
   line-height: 1.5rem;
 }
 
 .game-section {
   width: 860px;
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 35% 65%;
   grid-template-rows: auto;
 }
 .game {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .game-data {
   display: flex;
   flex-direction: column;
+  padding-right: 5%;
 }
 
 .game-data > p {
@@ -141,8 +141,8 @@ p {
 #tetris {
   margin: 2px;
   border: 2px solid black;
-  width: 300px;
-  height: 600px;
+  width: 275px;
+  height: 550px;
   box-sizing: border-box;
 }
 #next-piece,
