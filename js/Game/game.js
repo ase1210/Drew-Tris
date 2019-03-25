@@ -41,7 +41,7 @@ export default class Game {
       this.keyMap.removeEventListener();
       this.keyMap = new KeyMap(this._keys());
       play.innerText = "Pause";
-      this._tick();
+      this.timeOut = setTimeout(this._tick, 75 * (11 - this.level));
     }
   }
 
