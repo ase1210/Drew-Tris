@@ -21,7 +21,7 @@ const oPiece = new OPiece("#FFFF00");
 const lPiece = new LPiece("#00FF00");
 const jPiece = new JPiece("#0000FF");
 const sPiece = new SPiece("#4b0082");
-const zPiece = new ZPiece("#9400D3");
+const zPiece = new ZPiece("#EE82EE");
 
 //Pentris Pieces
 const pbPiece = new PBPiece("#FF0000");
@@ -30,8 +30,8 @@ const piPiece = new PIPiece("#FFFF00");
 const pjPiece = new PJPiece("#00FF00");
 const plPiece = new PLPiece("#0000FF");
 const pwPiece = new PWPiece("#4b0082");
-const psPiece = new PSPiece("#9400D3");
-const pzPiece = new PZPiece("#EE82EE");
+const psPiece = new PSPiece("#EE82EE");
+const pzPiece = new PZPiece("#9400D3");
 
 export const pieces = {
   classic: [lPiece, oPiece, jPiece, sPiece, zPiece, iPiece, tPiece],
