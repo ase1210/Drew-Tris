@@ -202,6 +202,16 @@ p {
   background-color: lightgreen;
   cursor: pointer;
 }
+.selected {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: chartreuse;
+  border: 1px solid darkolivegreen;
+  border-radius: 4px;
+  padding: 10px;
+  background-color: darkolivegreen;
+  cursor: pointer;
+}
 
 .controls {
   display: flex;
