@@ -109,6 +109,7 @@ h3 {
 
 p {
   font-size: 1.1rem;
+  padding-left: 30px;
   line-height: 1.5rem;
 }
 
@@ -130,6 +131,7 @@ p {
 
 .game-data > p {
   text-align: center;
+  padding: 0;
 }
 
 .section-title {
