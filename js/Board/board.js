@@ -19,6 +19,13 @@ export default class Board {
     this.move("startingPos");
   }
 
+  setSavedPiece(piece) {
+    this.currentPos.forEach(pos => {
+      this.grid[pos[0]][pos[1]] = 0;
+    });
+    this.setCurrentPiece(piece);
+  }
+
   move(direction) {
     const currPos = this.currentPos;
     const newPos = this.currentPiece.move(direction, currPos);
