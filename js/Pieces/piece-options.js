@@ -15,8 +15,8 @@ import PSPiece from "./Pentris/ps-piece";
 import PZPiece from "./Pentris/pz-piece";
 
 // Classic Pieces
-const tPiece = new TPiece("#FF0000");
-const iPiece = new IPiece("#FF7F00");
+const iPiece = new IPiece("#FF0000");
+const tPiece = new TPiece("#FF7F00");
 const oPiece = new OPiece("#FFFF00");
 const lPiece = new LPiece("#00FF00");
 const jPiece = new JPiece("#0000FF");
@@ -24,26 +24,26 @@ const sPiece = new SPiece("#4b0082");
 const zPiece = new ZPiece("#EE82EE");
 
 //Pentris Pieces
-const pbPiece = new PBPiece("#FF0000");
-const pdPiece = new PDPiece("#FF7F00");
-const piPiece = new PIPiece("#FFFF00");
+const piPiece = new PIPiece("#FF0000");
+const pbPiece = new PBPiece("#FF7F00");
+const pdPiece = new PDPiece("#FFFF00");
 const pjPiece = new PJPiece("#00FF00");
 const plPiece = new PLPiece("#0000FF");
-const pwPiece = new PWPiece("#4b0082");
-const psPiece = new PSPiece("#EE82EE");
-const pzPiece = new PZPiece("#9400D3");
+const psPiece = new PSPiece("#4b0082");
+const pzPiece = new PZPiece("#EE82EE");
+const pwPiece = new PWPiece("#9400D3");
 
 export const pieces = {
-  classic: [lPiece, oPiece, jPiece, sPiece, zPiece, iPiece, tPiece],
+  classic: [iPiece, tPiece, oPiece, lPiece, jPiece, sPiece, zPiece],
   pentris: [
-    pjPiece,
-    plPiece,
-    pwPiece,
     piPiece,
     pbPiece,
     pdPiece,
+    pjPiece,
+    plPiece,
     psPiece,
-    pzPiece
+    pzPiece,
+    pwPiece
   ],
-  combo: [tPiece, iPiece, oPiece, pjPiece, plPiece, pwPiece, psPiece, pzPiece]
+  combo: [iPiece, tPiece, oPiece, pjPiece, plPiece, psPiece, pzPiece, pwPiece]
 };
