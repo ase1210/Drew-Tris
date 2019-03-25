@@ -13,6 +13,7 @@ export default class Game {
     this.bag = [];
     this.timeOut = undefined;
     this._fillAndShuffleBag();
+    this.savedPiece = this.bag.shift();
     this.currentPiece = this.bag.shift();
     this.keyMap = undefined;
     this.rowsCleared = 0;
@@ -28,12 +29,25 @@ export default class Game {
     this._setNextPiece();
   }
 
+  pause() {
+    const play = document.getElementById("play");
+    if (play.innerText === "Pause") {
+      clearTimeout(this.timeOut);
+      play.innerText = "Resume";
+      //render paused board
+    } else {
+      play.innerText = "Pause";
+      this._tick();
+    }
+  }
+
   _setKeyMap() {
     this.keyMap = new KeyMap({
-      KeyA: () => {
+      KeyZ: () => {
         this.board.rotateCounterClockwise();
       },
-      KeyS: () => this.board.rotateClockwise(),
+      KeyX: () => this.board.rotateClockwise(),
+      KeyP: () => this.pause(),
       ArrowUp: () => this.board.rotateClockwise(),
       ArrowDown: () => this.move("down"),
       ArrowLeft: () => this.move("left"),
@@ -44,9 +58,6 @@ export default class Game {
   move(direction) {
     if (this.board.move(direction)) {
       this._freezePiece();
-      // } else if (direction === "down") {
-      //   clearTimeout(this.timeout);
-      //   this.timeOut = setTimeout(this._tick, 75 * (11 - this.level));
     }
   }
 
@@ -60,28 +71,31 @@ export default class Game {
     }
   }
   _clearRows() {
-    let rowsEl = document.getElementById("rows");
     let rowsCleared = this.board.clearRows();
     this.rowsCleared += rowsCleared;
+
+    // update #Rows display
+    let rowsEl = document.getElementById("rows");
     rowsEl.innerHTML = this.rowsCleared;
+
     return rowsCleared;
   }
   _setScore(clearedRows) {
-    let scoreEl = document.getElementById("score");
     this.score += this.level * 25 * Math.pow(2, clearedRows);
     let formattedScore = this.score.toString();
-    // if (formattedScore.length > 3) {
-    //   formattedScore = formatte
-    // }
 
+    // update Score display
+    let scoreEl = document.getElementById("score");
     scoreEl.innerHTML = formattedScore;
   }
 
   _updateLevel() {
-    let levelEl = document.getElementById("level");
     if (this.level < 10) {
       this.level = Math.floor(this.rowsCleared / 10) + this.difficulty;
     }
+
+    // update Level display
+    let levelEl = document.getElementById("level");
     levelEl.innerHTML = this.level;
   }
 
