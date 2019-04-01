@@ -1,8 +1,10 @@
-# Drew-Tris [<img src="https://github.com/ase1210/Drew-Tris/blob/master/src/images/drew-tris-favicon.ico" width='50' alt='Drew-Tris' align='right'/>](https://ase1210.github.io/Drew-Tris/)
+# Drew-Tris [<img src="https://github.com/ase1210/Drew-Tris/blob/master/src/images/drew-tris-favicon.ico" width='40' alt='Drew-Tris' align='right'/>](https://ase1210.github.io/Drew-Tris/)
 
 [Drew-Tris live](https://ase1210.github.io/Drew-Tris/)
 
-![Drew-Tris](https://github.com/ase1210/Drew-Tris/blob/master/src/images/Drew-Tris.png "Drew-Tris")
+<img src="https://github.com/ase1210/Drew-Tris/blob/master/src/images/Drew-Tris.png" width='50%' alt='Drew-Tris' align='right' padding-bottom='10'/> 
+<img src="https://github.com/ase1210/Drew-Tris/blob/master/src/images/whitespace.png" width='50%' height='10' alt='Whitespace' align='right' padding-bottom='10'/> 
+<img src="https://github.com/ase1210/Drew-Tris/blob/master/src/images/drew-tris.gif" width='50%' alt='Drew-Tris-Gif' align='right'/>   
 
 
 ## Background and Overview
