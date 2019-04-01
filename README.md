@@ -2,6 +2,9 @@
 
 [Drew-Tris live](https://ase1210.github.io/Drew-Tris/)
 
+![Drew-Tris](https://github.com/ase1210/Drew-Tris/blob/master/src/images/Drew-Tris.png "Drew-Tris")
+
+
 ## Background and Overview
 
 Drew-Tris is a simple JavaScript game application that is modeled after the classic game Tetris. I wanted to see if I could re-create this classic game as well as my own Drew-Tris version in under 4 days. 
