@@ -19,23 +19,24 @@ export const drawGrid = grid => {
 
 // CHANGE COLORS for an index position to key into colors array, and -1 for blank
 
-export const drawGameOver = grid => {
+export const drawGameOverPaused = grid => {
   const canvas = document.getElementById("tetris");
   const c = canvas.getContext("2d");
   const sq = canvas.width / 25;
-  canvas.width = sq * 25;
-  canvas.height = sq * 50;
+  const gridLen = grid[0].length;
+  canvas.width = sq * gridLen;
+  canvas.height = sq * gridLen * 2;
 
-  c.clearRect(0, 0, sq * 25, sq * 50);
+  const offset = (gridLen * 2 - grid.length) / 2;
+
+  c.clearRect(0, 0, sq * gridLen, sq * gridLen * 2);
   c.fillStyle = "black";
-  c.fillRect(0, 0, sq * 25, sq * 50);
+  c.fillRect(0, 0, sq * gridLen, sq * gridLen * 2);
 
   for (let i = 0; i < grid.length; i++) {
     for (let j = 0; j < grid[0].length; j++) {
       c.fillStyle = grid[i][j] || "black";
-      c.fillRect((j + 3) * sq, (i + 16) * sq, sq, sq);
-      // c.strokeStyle = "black";
-      // c.strokeRect((j + 3) * sq, (i + 17) * sq, sq, sq);
+      c.fillRect(j * sq, (i + offset - 2) * sq, sq, sq);
     }
   }
 };
