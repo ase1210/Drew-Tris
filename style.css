@@ -80,8 +80,9 @@ body {
 }
 #root {
   display: grid;
-  grid-template-rows: 90px 1fr 40px;
+  grid-template-rows: 90px 1fr 60px;
   flex-direction: column;
+  align-items: center;
   width: 900px;
   height: 100vh;
   padding: 20px;
@@ -228,7 +229,6 @@ p {
   font-weight: 400;
   font-size: 1.25rem;
   line-height: 1.5rem;
-  /* padding-left: 10px; */
 }
 
 img {
@@ -236,4 +236,13 @@ img {
   width: 20px;
   height: 20px;
   line-height: 1.5rem;
+}
+
+footer {
+  display: flex;
+  justify-content: space-around;
+}
+
+i {
+  font-size: 4rem;
 }
