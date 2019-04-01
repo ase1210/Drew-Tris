@@ -1,6 +1,11 @@
 import Game from "./js/Game/game";
-import { previewPiece, drawGamePreview } from "./js/View/canvas-templates";
+import {
+  previewPiece,
+  drawGamePreview,
+  drawGameOver
+} from "./js/View/canvas-templates";
 import { pieces } from "./js/Pieces/piece-options";
+import { gameoverGrid } from "./js/View/gameover";
 
 const colors = [
   // "#E8B8AB",
@@ -42,12 +47,14 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const chooseMode = e => {
-    const selected = document.getElementsByClassName("selected")[0];
-    selected.className = "game-selection-button";
-    e.target.className = "selected";
-    previewPiece(pieces[e.target.id][0], "saved-piece");
-    previewPiece(pieces[e.target.id][4], "next-piece");
-    drawGamePreview(pieces[e.target.id]);
+    if (play.innerText === "Play") {
+      const selected = document.getElementsByClassName("selected")[0];
+      selected.className = "game-selection-button";
+      e.target.className = "selected";
+      previewPiece(pieces[e.target.id][0], "saved-piece");
+      previewPiece(pieces[e.target.id][4], "next-piece");
+      drawGamePreview(pieces[e.target.id]);
+    }
   };
 
   play.addEventListener("click", start);
@@ -58,4 +65,5 @@ document.addEventListener("DOMContentLoaded", () => {
   drawGamePreview(pieces.classic);
   previewPiece(pieces.classic[0], "saved-piece");
   previewPiece(pieces.classic[4], "next-piece");
+  drawGameOver(gameoverGrid);
 });

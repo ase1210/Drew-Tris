@@ -1,6 +1,6 @@
 import Board from "../Board/board";
 import KeyMap from "../KeyMap/keyMap";
-import { previewPiece } from "../View/canvas-templates";
+import { previewPiece, drawGameOver } from "../View/canvas-templates";
 
 export default class Game {
   constructor(pieces, difficulty, colors, board = new Board()) {
@@ -152,6 +152,7 @@ export default class Game {
       let play = document.getElementById("play");
       play.innerText = "Play";
       // RENDER GAMEOVER WITH SCORE???
+      drawGameOver();
     }
     return gameOver;
   }
