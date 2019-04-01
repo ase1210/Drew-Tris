@@ -1,12 +1,13 @@
 import Board from "../Board/board";
 import KeyMap from "../KeyMap/keyMap";
-import { previewPiece, drawGameOver } from "../View/canvas-templates";
+import { previewPiece, drawGameOverPaused } from "../View/canvas-templates";
+import { gameoverGrid } from "../View/gameover";
+import { pausedGrid } from "../View/paused";
 
 export default class Game {
-  constructor(pieces, difficulty, colors, board = new Board()) {
+  constructor(pieces, difficulty, board = new Board()) {
     this.board = board;
     this.difficulty = difficulty;
-    this.colors = colors;
     this.pieces = pieces;
     this.score = 0;
     this.level = 1;
@@ -36,10 +37,11 @@ export default class Game {
       play.innerText = "Resume";
       this.keyMap.removeEventListener();
       this.keyMap = new KeyMap(this._pauseKeys());
-      //RENDER paused board
+      drawGameOverPaused(pausedGrid);
     } else {
       this.keyMap.removeEventListener();
       this.keyMap = new KeyMap(this._keys());
+      this.board._drawGrid();
       play.innerText = "Pause";
       this.timeOut = setTimeout(this._tick, 75 * (11 - this.level));
     }
@@ -152,7 +154,7 @@ export default class Game {
       let play = document.getElementById("play");
       play.innerText = "Play";
       // RENDER GAMEOVER WITH SCORE???
-      drawGameOver();
+      drawGameOverPaused(gameoverGrid);
     }
     return gameOver;
   }

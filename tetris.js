@@ -1,11 +1,6 @@
 import Game from "./js/Game/game";
-import {
-  previewPiece,
-  drawGamePreview,
-  drawGameOver
-} from "./js/View/canvas-templates";
+import { previewPiece, drawGamePreview } from "./js/View/canvas-templates";
 import { pieces } from "./js/Pieces/piece-options";
-import { gameoverGrid } from "./js/View/gameover";
 
 const colors = [
   // "#E8B8AB",
@@ -31,14 +26,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const classic = document.getElementById("classic");
   const pentris = document.getElementById("pentris");
   const combo = document.getElementById("combo");
-  let game = new Game(pieces.classic, 1, colors);
+  let game = new Game(pieces.classic, 1);
 
   const start = e => {
     const play = document.getElementById("play");
 
     if (play.innerText === "Play") {
       const selected = document.getElementsByClassName("selected")[0];
-      game = new Game(pieces[selected.id], 1, colors);
+      game = new Game(pieces[selected.id], 1);
       game.play();
       play.innerText = "Pause";
     } else {
@@ -65,5 +60,4 @@ document.addEventListener("DOMContentLoaded", () => {
   drawGamePreview(pieces.classic);
   previewPiece(pieces.classic[0], "saved-piece");
   previewPiece(pieces.classic[4], "next-piece");
-  drawGameOver(gameoverGrid);
 });
