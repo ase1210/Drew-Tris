@@ -240,7 +240,11 @@ img {
 
 footer {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
+}
+
+footer a {
+  margin-right: 30px;
 }
 
 i {
