@@ -5,9 +5,16 @@
 ## Background and Overview
 
 #### Motivation for project
-  * Tetris is one of my favorite games from my childhood and is also my mom’s favorite game.  
+  * Tetris is one of my mom's favorite games and a classic from my childhood.  
   * The reason I chose this project was to be able to share a coding creation with my mom.
 
-This project will re-create the classic game Tetris.  Time permitting, I also want to implement a “crazy-tris” which would have weirdly shaped pieces. 
+A 4-day project that will focus on re-creating the classic game Tetris.  Time permitting, I also want to implement a “crazy-tris” which would have weirdly shaped pieces.
+
+## Technologies
+
+Vanilla JS focused on Object Oriented Programming  
+HTML5 Canvas  
+DOM Manipulation  
+Webpack  
 
 
