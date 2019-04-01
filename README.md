@@ -4,17 +4,16 @@
 
 ## Background and Overview
 
+Drew-Tris is a simple JavaScript game application that is modeled after the classic game Tetris. I wanted to see if I could re-create this classic game as well as my own Drew-Tris version in under 4 days. 
+
 #### Motivation for project
   * Tetris is one of my mom's favorite games and a classic from my childhood.  
   * The reason I chose this project was to be able to share a coding creation with my mom.
 
-A 4-day project that will focus on re-creating the classic game Tetris.  Time permitting, I also want to implement a “crazy-tris” which would have weirdly shaped pieces.
-
 ## Technologies
-
-Vanilla JS focused on Object Oriented Programming  
-HTML5 Canvas  
-DOM Manipulation  
-Webpack  
+  * Vanilla JavaScript with a focus on Object Oriented Programming  
+  * HTML5 Canvas
+  * DOM Manipulation  
+  * Webpack  
 
 
