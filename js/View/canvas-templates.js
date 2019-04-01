@@ -22,8 +22,8 @@ export const drawGrid = grid => {
 export const drawGameOverPaused = grid => {
   const canvas = document.getElementById("tetris");
   const c = canvas.getContext("2d");
-  const sq = canvas.width / 25;
   const gridLen = grid[0].length;
+  const sq = canvas.width / gridLen;
   canvas.width = sq * gridLen;
   canvas.height = sq * gridLen * 2;
 
@@ -37,6 +37,8 @@ export const drawGameOverPaused = grid => {
     for (let j = 0; j < grid[0].length; j++) {
       c.fillStyle = grid[i][j] || "black";
       c.fillRect(j * sq, (i + offset - 2) * sq, sq, sq);
+      c.strokeStyle = grid[i][j] || "black";
+      c.strokeRect(j * sq, (i + offset - 2) * sq, sq, sq);
     }
   }
 };
