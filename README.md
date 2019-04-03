@@ -62,3 +62,25 @@ export default class KeyMap {
 }
 
 ```
+
+Canvas drawGrid function
+```JavaScript
+export const drawGrid = grid => {
+  const canvas = document.getElementById("tetris");
+  const c = canvas.getContext("2d");
+  const sq = canvas.width / 10;
+  canvas.width = sq * 10;
+  canvas.height = sq * 20;
+
+  c.clearRect(0, 0, sq * 10, sq * 20);
+
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[0].length; j++) {
+      c.fillStyle = grid[i][j] || "black";
+      c.fillRect(j * sq, (i - 1) * sq, sq, sq);
+      c.strokeStyle = "black";
+      c.strokeRect(j * sq, (i - 1) * sq, sq, sq);
+    }
+  }
+};
+```
