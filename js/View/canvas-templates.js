@@ -17,8 +17,6 @@ export const drawGrid = grid => {
   }
 };
 
-// CHANGE COLORS for an index position to key into colors array, and -1 for blank
-
 export const drawGameOverPaused = grid => {
   const canvas = document.getElementById("tetris");
   const c = canvas.getContext("2d");
