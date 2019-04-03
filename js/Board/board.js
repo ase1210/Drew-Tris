@@ -107,23 +107,6 @@ export default class Board {
     this.currentPos = newPos;
   }
 
-  // rotate(direction) {
-  //   const currentPiece = this.currentPiece;
-  //   const currPos = this.currentPos;
-  //   let [currPosState, shift] = [this.currentPosState, -1];
-  //   //  = this.currentPosState;
-  //   if (direction === "clockwise") {
-  //     shift = 1;
-  //     currPosState += 1;
-  //   }
-  //   // let shift = direction === "clockwise" ? 1 : -1;
-  //   const newPos = currentPiece.rotate(currPos, currPosState, shift);
-  //   if (this._isValidMove(currPos, newPos)) {
-  //     this._updateGrid(currPos, newPos);
-  //     this.currentPosState = currPosState % this.currentPiece.numStates;
-  //   } else if (direction === "down") return false;
-  // }
-
   rotateClockwise() {
     let currPos = this.currentPos;
     let pieceState = (this.currentPosState + 1) % this.currentPiece.numStates;
