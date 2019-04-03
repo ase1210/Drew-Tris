@@ -62,8 +62,6 @@ export default class Board {
       if (newBlock[1] > 9) return false;
       if (newBlock[0] > 20) return false;
 
-      // REFACTOR THIS BELOW IF STATEMENT to use isOnGrid and isOccupied..maybe refactor above if statements as well?
-
       if (
         this._isOnGrid(newBlock) &&
         this.grid[newBlock[0]][newBlock[1]] && // location on grid is occupied
@@ -74,8 +72,6 @@ export default class Board {
 
     return true;
   }
-
-  // _isOccupied(posArr, block) {}
 
   _includesBlock(posArr, block) {
     for (let i = 0; i < posArr.length; i++) {
